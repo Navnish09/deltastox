@@ -1,0 +1,25 @@
+.divider {
+  width: 100%;
+  
+  &.vertical {
+    transform: rotate(90deg);
+  }
+
+  &.small {
+    border-radius: 1px;
+    height: 1px;
+  }
+
+  &.large {
+    border-radius: 2px;
+    height: 2px;
+  }
+
+  &.dark {
+    background-color: #272b30;
+  }
+
+  &.light {
+    background-color: #efefef;
+  }
+}

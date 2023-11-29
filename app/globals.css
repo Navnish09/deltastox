@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  body,
+  html {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  h1 {
+    @apply text-3xl font-semibold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+  }
+
+  h4 {
+    @apply text-lg font-semibold;
+  }
+
+  h5 {
+    @apply text-base font-semibold;
+  }
+
+  h6 {
+    @apply text-sm font-semibold;
+  }
+
+  p {
+    @apply text-base;
+  }
+
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 1% 8%;
+    --foreground: 210 40% 98%;
+
+    --darked-background: 240 4% 5%;
+    --darked-foreground: 220 13% 95%;
+
+    --card: 240 4% 5%;
+    --card-foreground: 220 13% 95%;
+
+    --popover: 240 4% 5%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 36 100% 50%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 210 9% 87%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 210 6% 46%;
+
+    --accent: 0 0% 20%;
+    --accent-foreground: 210 9% 87%;
+
+    --destructive: 0 97% 46%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142.1 70.6% 45.3%;
+    --success-foreground: 355.7 100% 97.3%;
+
+    --border: 220 4% 15%;
+    --input: 0 0% 50%;
+    --ring: 36 90.2% 48.2%;
+  }
+}
+
+@layer components {
+  .auth-screen-bg {
+    background: radial-gradient(
+        25.45% 30.45% at 70% 90.16%,
+        rgba(255, 152, 0, 0.18) 3.13%,
+        rgba(14, 17, 32, 0) 160%
+      ),
+      radial-gradient(
+        25.45% 30.45% at 35% 16.16%,
+        rgba(255, 152, 0, 0.18) 3.13%,
+        rgba(14, 17, 32, 0) 160%
+      ),
+      url("/Images/LoginBG.svg") 0% 250% no-repeat;
+    @apply bg-background;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .special-card-gradient {
+    background: linear-gradient(
+      116deg,
+      rgba(0, 0, 0, 0.74) 3.13%,
+      rgba(15, 15, 14, 0.7) 80.11%,
+      rgba(255, 152, 0, 0.63) 137.18%
+    );
+  }
+
+  .card-dark-gradient {
+    background: linear-gradient(
+      -20deg,
+      #151515 -8.88%,
+      #09090a 48.04%,
+      #151515 101.51%
+    );
+  }
+}
