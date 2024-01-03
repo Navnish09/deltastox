@@ -2,25 +2,30 @@
 import React from "react";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import navigations from "../../../data/navigations.json";
+import navigations from "../../../../lib/data/navigations.json";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { DownArrow } from "@/app/_icons";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 export const TopNavigation = () => {
+  const router = useRouter();
   const pathname = usePathname();
 
   const pathHeading = navigations.items.find((item) => {
     return item.href === pathname;
   });
+
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
 
   return (
     <div
@@ -52,12 +57,13 @@ export const TopNavigation = () => {
               >
                 Profile
               </Link>
-              <Link
-                href={"/login"}
+              <div
+                role="button"
                 className="hover:bg-secondary/50 rounded-sm p-2 px-3"
+                onClick={onLogout}
               >
                 Logout
-              </Link>
+              </div>
             </div>
           </PopoverContent>
         </Popover>

@@ -7,8 +7,10 @@ import {
   ColumnDefTemplate,
 } from "@tanstack/react-table";
 import { DataCard } from "@/app/_components/DataCard";
-import { cn } from "@/lib/utils";
+import { cn, createColumns } from "@/lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
+import { useState } from "react";
+import { nifty50 } from "@/lib/data/ninfy50";
 
 const reactTableColumns: AccessorKeyColumnDef<{
   slNo: number;
@@ -193,18 +195,38 @@ const data = [
 ];
 
 const templates = {
-  change: (prop: CellContext<(typeof data)[0], typeof reactTableColumns>) => {
+  param_0: (prop: CellContext<(typeof nifty50)[0], any>) => {
     return (
       <span
         className={cn("text-sm font-semibold", {
-          ["text-success"]: +prop.row.original.change > 0,
-          ["text-destructive"]: +prop.row.original.change < 0,
+          ["text-success"]: +prop.row.original.param_0 > 0,
+          ["text-destructive"]: +prop.row.original.param_0 < 0,
         })}
       >
-        {prop.row.original.change}%
+        {(prop.row.original.param_0 * 100).toFixed(1)}%
       </span>
     );
   },
+};
+
+const Nifty50 = () => {
+  const [tableData, setTableData] = useState(nifty50);
+  const columns = createColumns([
+    ["Symbol", "Name"],
+    ["param_0", "LTP"],
+    ["param_1", "Prev"],
+    ["param_2", "Volume"],
+    ["param_3", "Date"],
+  ]);
+
+  return (
+    <DataCard
+      templates={templates}
+      heading="VOLUME CONTRACTION"
+      data={tableData}
+      columns={columns}
+    />
+  );
 };
 
 export default function SectoDifference() {
@@ -213,12 +235,7 @@ export default function SectoDifference() {
       <ThumbHeading heading="Heading" />
       <div className="flex flex-wrap box-border gap-2">
         <div className="flex-grow">
-          <DataCard
-            templates={templates}
-            heading="NIFTY 50"
-            data={data}
-            columns={reactTableColumns}
-          />
+          <Nifty50 />
         </div>
         <div className="flex-grow">
           <DataCard

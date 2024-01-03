@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
-  AccessorColumnDef,
   AccessorKeyColumnDef,
   CellContext,
-  ColumnDef,
   ColumnDefTemplate,
 } from "@tanstack/react-table";
 import { Input } from "@/components/ui/input";
@@ -25,6 +23,14 @@ export const DataCard = <TData, TValue>({
   data,
   templates,
 }: Props<TData, TValue>) => {
+  const [searchValue, setSeachValue] = useState("");
+
+  const filteredData = useMemo(() => {
+    return data.filter((item: any) =>
+      item?.Symbol?.toLowerCase()?.includes?.(searchValue.toLowerCase())
+    );
+  }, [data, searchValue]);
+
   return (
     <div className="flex flex-col">
       <Card className="w-fit rounded-b-none relative top-3">
@@ -37,6 +43,8 @@ export const DataCard = <TData, TValue>({
         <CardHeader>
           <div className="w-4/12">
             <Input
+              value={searchValue}
+              onChange={(e) => setSeachValue(e.target.value)}
               startIcon={<Search height={18} width={18} />}
               placeholder="Search"
             />
@@ -44,7 +52,11 @@ export const DataCard = <TData, TValue>({
         </CardHeader>
 
         <CardContent>
-          <DataTable templates={templates} columns={columns} data={data} />
+          <DataTable
+            templates={templates}
+            columns={columns}
+            data={filteredData}
+          />
         </CardContent>
       </Card>
     </div>

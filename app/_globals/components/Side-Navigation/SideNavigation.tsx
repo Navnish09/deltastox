@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { SwingChart, BarChart, Home, LineChart, PieChart, Tool } from "@icons";
 import { cn } from "@/lib/utils";
 
-import navigationData from "../../../data/navigations.json";
+import navigationData from "../../../../lib/data/navigations.json";
 
 const IconList = {
   Dashboard: <Home height={24} width={24} />,

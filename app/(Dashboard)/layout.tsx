@@ -6,6 +6,7 @@ import { TopNavigation } from "@globals/components/Top-Navigation";
 import classes from "./Dashboard.module.scss";
 import "../globals.css";
 import { cn } from "@/lib/utils";
+import AuthProtection from "../_components/AuthProtection/AuthProtection";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -22,13 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "dark bg-background")}>
-        <div className={"relative h-full flex"}>
-          <SideNavigation />
-          <div className={"flex-grow overflow-auto"}>
-            <TopNavigation />
-            <main className="px-4 py-10 isolate">{children}</main>
+        <AuthProtection type="protected">
+          <div className={"relative h-full flex"}>
+            <SideNavigation />
+            <div className={"flex-grow overflow-auto"}>
+              <TopNavigation />
+              <main className="px-4 py-10 isolate">{children}</main>
+            </div>
           </div>
-        </div>
+        </AuthProtection>
       </body>
     </html>
   );
