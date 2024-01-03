@@ -1,0 +1,44 @@
+{
+  "auth" : {
+    "login" : "/deltastox/auth/login",
+    "createUser" : "/deltastox/Auth/createUser"
+  },
+  "proData": {
+    "preMarketData": "/deltastox/ProSetup/getValuefromForm9",
+    "5MinMomentum": "/deltastox/ProSetup/getValuefromFormpro11",
+    "10MinMomentum": "/deltastox/ProSetup/getValuefromFormpro12",
+    "downsideIntraday": "/deltastox/ProSetup/getValuefromForm",
+    "upsideIntraday": "/deltastox/ProSetup/getValuefromForm1",
+    "downsideSwing": "/deltastox/ProSetup/getValuefromForm2",
+    "upsideSwing": "/deltastox/ProSetup/getValuefromForm3",
+    "valumeContraction": "/deltastox/ProSetup/getValuefromForm8"
+  },
+  "marketDepth": {
+    "maxBoost": "/deltastox/MarketDepth/getValuefromFormSc5",
+    "topGainers": "/deltastox/MarketDepth/getValuefromFormSc2",
+    "topLosers": "/deltastox/MarketDepth/getValuefromFormSc3"
+  },
+  "SectorialFlow": {
+    "nifty50": "/deltastox/SectorialFlow/getValuefromFormSc7",
+    "bankNifty": "/deltastox/SectorialFlow/getValuefromFormSc8",
+    "niftyAuto": "/deltastox/SectorialFlow/getValuefromFormSc9",
+    "niftyFinServ": "/deltastox/SectorialFlow/getValuefromFormSE1",
+    "niftyFMCG": "/deltastox/SectorialFlow/getValuefromFormSE2",
+    "niftyIT": "/deltastox/SectorialFlow/getValuefromFormSE3",
+    "niftyMedia": "/deltastox/SectorialFlow/getValuefromFormSE4",
+    "niftyMetal": "/deltastox/SectorialFlow/getValuefromFormSE5",
+    "niftyPharma": "/deltastox/SectorialFlow/getValuefromFormSE6",
+    "niftyPsuBanks": "/deltastox/SectorialFlow/getValuefromFormSE7",
+    "niftyPvtBanks": "/deltastox/SectorialFlow/getValuefromFormSE8",
+    "niftyRealty": "/deltastox/SectorialFlow/getValuefromFormSE9",
+    "niftyEnergy": "/deltastox/SectorialFlow/getValuefromFormSE10"
+  },
+  "swingCenter": {
+    "sectorialDifference": "/deltastox/SwingCenter/getValuefromFormSE20",
+    "shortTermSwingBuy": "/deltastox/SwingCenter/getValuefromFormSE11",
+    "shortTermSwingSell": "/deltastox/SwingCenter/getValuefromFormSE12",
+    "longTermSwingBuy": "/deltastox/SwingCenter/getValuefromFormSE13",
+    "longTermSwingSell": "/deltastox/SwingCenter/getValuefromFormSE14",
+    "heavyWeightIndex": "/deltastox/SwingCenter/getValuefromFormSE15"
+  }
+}

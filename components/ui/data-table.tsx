@@ -3,12 +3,9 @@
 import * as React from "react";
 import {
   AccessorKeyColumnDef,
-  Cell,
   CellContext,
-  ColumnDef,
   ColumnDefTemplate,
   ColumnFiltersState,
-  Row,
   SortingState,
   VisibilityState,
   flexRender,
@@ -41,7 +38,7 @@ export function DataTable<TData, TValue>({
   columns,
   data,
   templates,
-}: DataTableProps<TData, TValue>) {
+}: Readonly<DataTableProps<TData, TValue>>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});

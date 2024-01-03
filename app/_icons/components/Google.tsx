@@ -3,7 +3,7 @@ import React, { SVGProps } from "react";
 export const Google = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg height="24" viewBox="0 0 25 24" fill="currentColor" {...props}>
-      <g clip-path="url(#clip0_287_1329)">
+      <g clipPath="url(#clip0_287_1329)">
         <path
           d="M24.2449 12.27C24.2449 11.48 24.1749 10.73 24.0549 10H12.7549V14.51H19.2249C18.9349 15.99 18.0849 17.24 16.8249 18.09V21.09H20.6849C22.9449 19 24.2449 15.92 24.2449 12.27Z"
           fill="#4285F4"

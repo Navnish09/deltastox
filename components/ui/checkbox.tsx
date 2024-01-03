@@ -27,7 +27,7 @@ const Checkbox = React.forwardRef<
         <Check className="h-4 w-4" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
-    <label className="text-sm text-muted-foreground">{label}</label>
+    <label className="text-sm text-primary">{label}</label>
   </div>
 ));
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
