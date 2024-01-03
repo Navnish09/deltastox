@@ -3,8 +3,8 @@
 import {
   AccessorKeyColumnDef,
   CellContext,
-  ColumnDef,
-  ColumnDefTemplate,
+  // ColumnDef,
+  // ColumnDefTemplate,
 } from "@tanstack/react-table";
 import { DataCard } from "@/app/_components/DataCard";
 import { cn, createColumns } from "@/lib/utils";
@@ -237,31 +237,31 @@ export default function SectoDifference() {
         <div className="flex-grow">
           <Nifty50 />
         </div>
-        <div className="flex-grow">
+        {/* <div className="flex-grow">
           <DataCard
             templates={templates}
             heading="BANKNIFTY"
             data={data}
             columns={reactTableColumns}
           />
-        </div>
-        <div className="flex-grow">
+        </div> */}
+        {/* <div className="flex-grow">
           <DataCard
             templates={templates}
             heading="NIFTYAUTO"
             data={data}
             columns={reactTableColumns}
           />
-        </div>
-        <div className="flex-grow">
+        </div> */}
+        {/* <div className="flex-grow">
           <DataCard
             templates={templates}
             heading="NIFTY FIN-SERV"
             data={data}
             columns={reactTableColumns}
           />
-        </div>
-        <div className="NIFTY FMCG">
+        </div> */}
+        {/* <div className="NIFTY FMCG">
           <DataCard
             templates={templates}
             heading="DOWNSIDE INTRADAY"
@@ -332,7 +332,7 @@ export default function SectoDifference() {
             data={data}
             columns={reactTableColumns}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
