@@ -15,6 +15,7 @@ type Props<TData, TValue> = {
   columns: AccessorKeyColumnDef<TData, TValue>[];
   data: TData[];
   templates?: Record<string, ColumnDefTemplate<CellContext<TData, TValue>>>;
+  loading?: boolean;
 };
 
 export const DataCard = <TData, TValue>({
@@ -22,6 +23,7 @@ export const DataCard = <TData, TValue>({
   columns,
   data,
   templates,
+  loading,
 }: Props<TData, TValue>) => {
   const [searchValue, setSeachValue] = useState("");
 
@@ -32,9 +34,9 @@ export const DataCard = <TData, TValue>({
   }, [data, searchValue]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <Card className="w-fit rounded-b-none relative top-3">
-        <CardContent className="p-4 pb-6">
+        <CardContent className="px-4 pt-3 pb-5">
           <h6 className="text-primary">{heading}</h6>
         </CardContent>
       </Card>
@@ -53,6 +55,7 @@ export const DataCard = <TData, TValue>({
 
         <CardContent>
           <DataTable
+            loading={loading}
             templates={templates}
             columns={columns}
             data={filteredData}

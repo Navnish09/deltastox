@@ -19,7 +19,8 @@ export const Login = ({}: Props) => {
   const router = useRouter();
 
   const [rememberMe, setRememberMe] = useState<CheckedState>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
@@ -105,14 +106,21 @@ export const Login = ({}: Props) => {
               />
               <Input
                 size="lg"
-                type="password"
+                type={passwordVisible ? "text" : "password"}
                 value={userDetails.password}
                 placeholder={"Enter your Password"}
                 onChange={(e) =>
                   setUserDetails({ ...userDetails, password: e.target.value })
                 }
                 endIcon={
-                  <Show height={20} width={20} style={{ cursor: "pointer" }} />
+                  <Show
+                    height={20}
+                    width={20}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setPasswordVisible(!passwordVisible);
+                    }}
+                  />
                 }
               />
             </div>

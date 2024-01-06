@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 import Link from "next/link";
 
@@ -12,9 +12,51 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { signUp } from "@/services/authServices";
 
 const LoginPage = () => {
   const router = useRouter();
+  const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [userDetails, setUserDetails] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    agreed: false,
+  });
+
+  const disableButton = () => {
+    return (
+      userDetails.firstName === "" ||
+      userDetails.lastName === "" ||
+      userDetails.email === "" ||
+      userDetails.password === "" ||
+      userDetails.confirmPassword === "" ||
+      !userDetails.agreed ||
+      userDetails.password !== userDetails.confirmPassword
+    );
+  };
+
+  const SignUp = async () => {
+    if (disableButton()) return;
+
+    const { firstName, lastName, password, email } = userDetails;
+    try {
+      setLoading(true);
+      await signUp({
+        name: `${firstName} ${lastName}`,
+        password,
+        email,
+      });
+      router.push("/login");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className={"flex justify-center relative w-full h-full items-center"}>
@@ -56,19 +98,53 @@ const LoginPage = () => {
                 <div className="flex flex-col gap-4 w-full">
                   <div className="flex gap-4">
                     <div className="w-1/2">
-                      <Input size="lg" placeholder={"Enter your first name"} />
+                      <Input
+                        size="lg"
+                        placeholder={"Enter your first name"}
+                        onChange={(e) => {
+                          setUserDetails({
+                            ...userDetails,
+                            firstName: e.target.value,
+                          });
+                        }}
+                      />
                     </div>
                     <div className="w-1/2">
-                      <Input size="lg" placeholder={"Enter your last name"} />
+                      <Input
+                        size="lg"
+                        placeholder={"Enter your last name"}
+                        onChange={(e) => {
+                          setUserDetails({
+                            ...userDetails,
+                            lastName: e.target.value,
+                          });
+                        }}
+                      />
                     </div>
                   </div>
-                  <Input size="lg" placeholder={"Enter your email"} />
                   <Input
                     size="lg"
-                    type="password"
+                    placeholder={"Enter your email"}
+                    onChange={(e) => {
+                      setUserDetails({
+                        ...userDetails,
+                        email: e.target.value,
+                      });
+                    }}
+                  />
+                  <Input
+                    size="lg"
+                    type={passwordVisible ? "text" : "password"}
                     placeholder={"Enter your password"}
+                    onChange={(e) => {
+                      setUserDetails({
+                        ...userDetails,
+                        password: e.target.value,
+                      });
+                    }}
                     endIcon={
                       <Show
+                        onClick={() => setPasswordVisible(!passwordVisible)}
                         height={20}
                         width={20}
                         style={{ cursor: "pointer" }}
@@ -76,11 +152,18 @@ const LoginPage = () => {
                     }
                   />
                   <Input
-                    type="password"
+                    type={passwordVisible ? "text" : "password"}
                     size="lg"
+                    onChange={(e) => {
+                      setUserDetails({
+                        ...userDetails,
+                        confirmPassword: e.target.value,
+                      });
+                    }}
                     placeholder={"Confirm your password"}
                     endIcon={
                       <Show
+                        onClick={() => setPasswordVisible(!passwordVisible)}
                         height={20}
                         width={20}
                         style={{ cursor: "pointer" }}
@@ -90,9 +173,21 @@ const LoginPage = () => {
                 </div>
 
                 <div className="flex w-full justify-between items-center">
-                  <Checkbox label="I agree to the Terms and Conditions and the Trading Risk Notice" />
+                  <Checkbox
+                    label="I agree to the Terms and Conditions and the Trading Risk Notice"
+                    onCheckedChange={(checked) => {
+                      setUserDetails({
+                        ...userDetails,
+                        agreed: !!checked,
+                      });
+                    }}
+                  />
                 </div>
-                <Button className="w-full" onClick={() => router.push("/")}>
+                <Button
+                  className="w-full"
+                  onClick={SignUp}
+                  disabled={disableButton() || loading}
+                >
                   Sign up now
                 </Button>
               </div>
