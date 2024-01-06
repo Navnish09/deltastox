@@ -1,6 +1,16 @@
 import { apiService } from "../axiosIntance";
 
-import { proData } from "../../lib/data/apiUrls.json";
+import apiUrls from "../../lib/data/apiUrls.json";
+
+const { proData } = apiUrls;
+
+export const preMarketData = () => {
+  return apiService.get(proData.preMarketData);
+};
+
+export const FiveMinMomemtum = () => {
+  return apiService.get(proData["5MinMomentum"]);
+};
 
 export const downsideIntraday = () => {
   return apiService.get(proData.downsideIntraday);

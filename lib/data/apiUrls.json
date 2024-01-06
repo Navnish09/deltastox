@@ -1,7 +1,7 @@
 {
   "auth" : {
     "login" : "/deltastox/auth/login",
-    "createUser" : "/deltastox/Auth/createUser"
+    "createUser" : "/deltastox/auth/create-user"
   },
   "proData": {
     "preMarketData": "/deltastox/ProSetup/getValuefromForm9",

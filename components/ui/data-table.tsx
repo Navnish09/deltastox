@@ -27,17 +27,36 @@ import {
   TableCell,
   Table,
 } from "./table";
+import { Skeleton } from "./skeleton";
 
 interface DataTableProps<TData, TValue> {
   columns: AccessorKeyColumnDef<TData, TValue>[];
   data: TData[];
   templates?: Record<string, ColumnDefTemplate<CellContext<TData, TValue>>>;
+  loading?: boolean;
 }
+
+const TableSkeleton = () => {
+  return (
+    <div className="flex items-center w-full">
+      <div className="space-y-4 flex-grow">
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+      </div>
+    </div>
+  );
+};
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   templates,
+  loading,
 }: Readonly<DataTableProps<TData, TValue>>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
@@ -107,7 +126,13 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={columns.length}>
+                  <TableSkeleton />
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}

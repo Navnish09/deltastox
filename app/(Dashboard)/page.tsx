@@ -1,8 +1,11 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+"use client";
+
+import { Card, CardHeader } from "@/components/ui/card";
 import { ThumbHeading } from "../_components/ThumbHeading";
 import { cn } from "@/lib/utils";
 import { TrendDown, TrendUp } from "../_icons";
 import { ArrowDownIcon, ArrowUpIcon } from "@radix-ui/react-icons";
+import { useState } from "react";
 
 const stockData = [
   {
@@ -37,6 +40,34 @@ const stockData = [
   },
 ];
 
+const NiftyCard = () => {
+  const [niftyData, setNiftyData] = useState({
+    price: 0,
+    change: 0,
+  });
+
+  return (
+    <Card
+      style={{
+        background:
+          "linear-gradient(-20deg, #151515 -8.88%, #09090A 48.04%, #151515 101.51%)",
+      }}
+    >
+      <CardHeader>
+        <div className="flex flex-col gap-3 items-center py-2 px-12">
+          <h5>NIFTY</h5>
+          <h2 className="text-destructive">-19322.55</h2>
+          <Card className="w-fit rounded-md">
+            <span className="text-destructive flex p-1 gap-1 items-center text-xs font-semibold">
+              <ArrowDownIcon height={18} width={18} /> 7.82%
+            </span>
+          </Card>
+        </div>
+      </CardHeader>
+    </Card>
+  );
+};
+
 export default function Home() {
   return (
     <>
@@ -45,7 +76,8 @@ export default function Home() {
           <ThumbHeading heading="Market Info" />
           <div className="flex flex-col gap-10">
             <Card>
-                <ul className="flex overflow-x-auto no-scrollbar p-3">
+              <ul className="no-scrollbar p-3 relative w-full min-h-[40px] overflow-x-hidden">
+                <div className="track">
                   {stockData.map((stock) => (
                     <li className="flex gap-3 border-r-4 px-2 border-secondary last:border-none text-sm">
                       <span className="whitespace-nowrap">{stock.name}</span>
@@ -64,7 +96,8 @@ export default function Home() {
                       </span>
                     </li>
                   ))}
-                </ul>
+                </div>
+              </ul>
             </Card>
             <div className="flex justify-center gap-10">
               <Card

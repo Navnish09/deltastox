@@ -1,13 +1,8 @@
 "use client";
 
-import {
-  AccessorKeyColumnDef,
-  CellContext,
-  ColumnDef,
-  ColumnDefTemplate,
-} from "@tanstack/react-table";
+import { AccessorKeyColumnDef, CellContext } from "@tanstack/react-table";
 import { DataCard } from "@/app/_components/DataCard";
-import { cn } from "@/lib/utils";
+import { cn, createColumns, framesInterval } from "@/lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -20,6 +15,39 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Divider } from "@/app/_components/Divider";
+import { topGainer, topLoser } from "@/services/apiServices";
+import { POLLING_INTERVAL } from "@/app/_globals/constant";
+import { useEffect, useState } from "react";
+
+const oldtemplates = {
+  change: (prop: CellContext<any, any>) => {
+    return (
+      <span
+        className={cn("text-sm font-semibold", {
+          ["text-success"]: +prop.row.original.change > 0,
+          ["text-destructive"]: +prop.row.original.change < 0,
+        })}
+      >
+        {prop.row.original.change}%
+      </span>
+    );
+  },
+};
+
+const newtemplates = {
+  param_2: (prop: CellContext<any, any>) => {
+    return (
+      <span
+        className={cn("text-sm font-semibold", {
+          ["text-success"]: +prop.row.original.param_2 > 0,
+          ["text-destructive"]: +prop.row.original.param_2 < 0,
+        })}
+      >
+        {(prop.row.original.param_2 * 100).toFixed(1)}%
+      </span>
+    );
+  },
+};
 
 const reactTableColumns: AccessorKeyColumnDef<{
   slNo: number;
@@ -264,19 +292,70 @@ const data2 = [
   },
 ];
 
-const templates = {
-  change: (prop: CellContext<any, any>) => {
-    return (
-      <span
-        className={cn("text-sm font-semibold", {
-          ["text-success"]: +prop.row.original.change > 0,
-          ["text-destructive"]: +prop.row.original.change < 0,
-        })}
-      >
-        {prop.row.original.change}%
-      </span>
-    );
-  },
+const TopGainers = () => {
+  const [tableData, setTableData] = useState([]);
+  const columns = createColumns([
+    ["Symbol", "Name"],
+    ["param_0", "LTP"],
+    ["param_1", "Prev-C"],
+    ["param_2", "Change (%)"],
+    ["param_3", "Alpha V"],
+  ]);
+
+  useEffect(() => {
+    const { stop } = framesInterval(() => {
+      topGainer().then((res) => {
+        setTableData(res.data.data);
+      });
+    }, POLLING_INTERVAL);
+
+    return () => {
+      stop();
+    };
+  }, []);
+
+  return (
+    <DataCard
+      loading={!tableData.length}
+      templates={newtemplates}
+      heading="TOP GAINERS"
+      data={tableData}
+      columns={columns}
+    />
+  );
+};
+
+const TopLosers = () => {
+  const [tableData, setTableData] = useState([]);
+  const columns = createColumns([
+    ["Symbol", "Name"],
+    ["param_0", "LTP"],
+    ["param_1", "Prev-C"],
+    ["param_2", "Change (%)"],
+    ["param_3", "Alpha V"],
+  ]);
+
+  useEffect(() => {
+    const { stop } = framesInterval(() => {
+      topLoser().then((res) => {
+        setTableData(res.data.data);
+      });
+    }, POLLING_INTERVAL);
+
+    return () => {
+      stop();
+    };
+  }, []);
+
+  return (
+    <DataCard
+      loading={!tableData.length}
+      templates={newtemplates}
+      heading="TOP LOSERS"
+      data={tableData}
+      columns={columns}
+    />
+  );
 };
 
 export default function PowerHouse() {
@@ -307,7 +386,7 @@ export default function PowerHouse() {
             <div className="flex flex-wrap box-border gap-4">
               <div className="flex-grow">
                 <DataCard
-                  templates={templates}
+                  templates={oldtemplates}
                   heading="Long Build Up"
                   data={data2}
                   columns={smallChartColumns}
@@ -315,7 +394,7 @@ export default function PowerHouse() {
               </div>
               <div className="flex-grow">
                 <DataCard
-                  templates={templates}
+                  templates={oldtemplates}
                   heading="Short Build Up"
                   data={data2}
                   columns={smallChartColumns}
@@ -323,7 +402,7 @@ export default function PowerHouse() {
               </div>
               <div className="flex-grow">
                 <DataCard
-                  templates={templates}
+                  templates={oldtemplates}
                   heading="Profit Booking"
                   data={data2}
                   columns={smallChartColumns}
@@ -331,7 +410,7 @@ export default function PowerHouse() {
               </div>
               <div className="flex-grow">
                 <DataCard
-                  templates={templates}
+                  templates={oldtemplates}
                   heading="Short Covering"
                   data={data2}
                   columns={smallChartColumns}
@@ -344,37 +423,27 @@ export default function PowerHouse() {
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border gap-3">
-          <div className="flex-grow">
+          <div className="flex-grow basis-1/3">
             <DataCard
-              templates={templates}
+              templates={oldtemplates}
               heading="SUPER STOCKS"
               data={data}
               columns={reactTableColumns}
             />
           </div>
-          <div className="flex-grow">
+          <div className="flex-grow basis-1/3">
             <DataCard
-              templates={templates}
+              templates={oldtemplates}
               heading="INTRADAY STOCKS"
               data={data}
               columns={reactTableColumns}
             />
           </div>
-          <div className="flex-grow">
-            <DataCard
-              templates={templates}
-              heading="TOP GAINERS"
-              data={data}
-              columns={reactTableColumns}
-            />
+          <div className="flex-grow basis-1/3">
+            <TopGainers />
           </div>
-          <div className="flex-grow">
-            <DataCard
-              templates={templates}
-              heading="TOP LOSERS"
-              data={data}
-              columns={reactTableColumns}
-            />
+          <div className="flex-grow basis-1/3">
+            <TopLosers />
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ export const ThumbHeading = ({ heading, color, ...props }: Props) => {
         <span
           className={cn("w-4 h-8 rounded-sm", colorClass)}
         ></span>
-        <h4>{heading}</h4>
+        <h3>{heading}</h3>
       </div>
     </>
   );
