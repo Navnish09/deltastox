@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import {
   heavyWeightIndex,
   longTermSwingBuy,
+  longTermSwingSell,
   shortTermSwingBuy,
   shortTermSwingSell,
 } from "@/services/apiServices";
@@ -39,7 +40,7 @@ const templates = {
           ["text-destructive"]: +prop.row.original.param_2 < 0,
         })}
       >
-        {(prop.row.original.param_2 * 100).toFixed(1)}%
+        {prop.row.original.param_2.toFixed(2)}%
       </span>
     );
   },
@@ -160,7 +161,7 @@ const LongTermSwingSell = () => {
 
   useEffect(() => {
     const { stop } = framesInterval(() => {
-      longTermSwingBuy().then((res) => {
+      longTermSwingSell().then((res) => {
         setTableData(res.data.data);
       });
     }, POLLING_INTERVAL);

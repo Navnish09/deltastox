@@ -51,12 +51,12 @@ export const TopNavigation = () => {
           </PopoverTrigger>
           <PopoverContent align="end" sideOffset={10}>
             <div className="flex flex-col gap-2 text-sm">
-              <Link
+              {/* <Link
                 href={"/"}
                 className="hover:bg-secondary/50 rounded-sm p-2 px-3"
               >
                 Profile
-              </Link>
+              </Link> */}
               <div
                 role="button"
                 className="hover:bg-secondary/50 rounded-sm p-2 px-3"

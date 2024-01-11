@@ -169,15 +169,6 @@
       #151515 101.51%
     );
   }
-
-  .track {
-    display: flex;
-    min-height: fit-content;
-    position: absolute;
-    white-space: nowrap;
-    will-change: transform;
-    animation: marquee 20s linear infinite forwards;
-  }
 }
 
 @keyframes marquee {
