@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import configs from "@/lib/data/TVTickerTapeConfigs.json";
+import { tickertapeConfig } from "@/lib/data/TickertapeConfigs";
 
 type Props = {};
 
@@ -13,7 +13,7 @@ export const TickerTape = ({}: Props) => {
     script.src =
       "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
     script.async = true;
-    script.innerHTML = JSON.stringify(configs);
+    script.innerHTML = JSON.stringify(tickertapeConfig);
     containerRef.current.appendChild(script);
   }, []);
 

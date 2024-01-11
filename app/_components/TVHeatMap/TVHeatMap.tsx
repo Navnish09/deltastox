@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 
-import configs from "@/lib/data/TVHeatmapConfigs.json";
+import { heatmapConfig } from "@/lib/data/HeatmapConfigs";
 
 type Props = {};
 
@@ -15,7 +15,7 @@ export const TVHeatMap = ({}: Props) => {
       "https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js";
     script.type = "text/javascript";
     script.async = true;
-    script.innerHTML = JSON.stringify(configs);
+    script.innerHTML = JSON.stringify(heatmapConfig);
     container.current?.appendChild(script);
   }, []);
 

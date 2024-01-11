@@ -43,7 +43,7 @@ const newtemplates = {
           ["text-destructive"]: +prop.row.original.param_2 < 0,
         })}
       >
-        {(prop.row.original.param_2 * 100).toFixed(1)}%
+        {(prop.row.original.param_2).toFixed(2)}%
       </span>
     );
   },
