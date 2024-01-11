@@ -366,7 +366,7 @@ export default function PowerHouse() {
         <Card>
           <CardHeader>
             <div className="flex justify-between items-center">
-              <h3>Futures buildup</h3>
+              <h4>Futures buildup</h4>
               <Select value="nifty50">
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Select a fruit" />
