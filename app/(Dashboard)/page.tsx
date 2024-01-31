@@ -1,11 +1,11 @@
 "use client";
 
+import { useState } from "react";
+
+import { ArrowDownIcon, ArrowUpIcon } from "@radix-ui/react-icons";
+
 import { Card, CardHeader } from "@/components/ui/card";
 import { ThumbHeading } from "../_components/ThumbHeading";
-import { cn } from "@/lib/utils";
-import { TrendDown, TrendUp } from "../_icons";
-import { ArrowDownIcon, ArrowUpIcon } from "@radix-ui/react-icons";
-import { useState } from "react";
 import { TickerTape } from "../_components/TickerTape";
 
 const NiftyCard = () => {
@@ -61,21 +61,19 @@ const BankNiftyCard = () => {
 
 export default function Home() {
   return (
-    <>
-      <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-10">
+        <ThumbHeading heading="Market Info" />
         <div className="flex flex-col gap-10">
-          <ThumbHeading heading="Market Info" />
-          <div className="flex flex-col gap-10">
-            {/* <Card> */}
-              <TickerTape />
-            {/* </Card> */}
-            <div className="flex justify-center gap-10">
-              <NiftyCard />
-              <BankNiftyCard />
-            </div>
+          {/* <Card> */}
+          <TickerTape />
+          {/* </Card> */}
+          <div className="flex justify-center gap-10">
+            <NiftyCard />
+            <BankNiftyCard />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

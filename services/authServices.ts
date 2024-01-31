@@ -11,3 +11,13 @@ export const signUp = (data: {
   email: string;
   password: string;
 }) => apiService.post(auth.createUser, data);
+
+export const getUserDetails = () => apiService.post(auth.getUserDetails);
+
+export const updateMobileAndPassword = (data: {
+  mobile?: string;
+  password?: string;
+}) =>
+  apiService.post(auth.updatePasswordAndMobile, undefined, {
+    params: data,
+  });

@@ -7,6 +7,7 @@ import classes from "./Dashboard.module.scss";
 import "../globals.css";
 import { cn } from "@/lib/utils";
 import AuthProtection from "../_components/AuthProtection/AuthProtection";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
             </div>
           </div>
         </AuthProtection>
+        <Toaster />
       </body>
     </html>
   );

@@ -15,6 +15,30 @@
   outline: none;
 }
 
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  /* border: 1px solid ; */
+  -webkit-text-fill-color: hsl(var(--secondary-foreground));
+  -webkit-box-shadow: 0 0 0px 1000px hsl(var(--input-background)) inset;
+  transition: background-color 50s ease-in-out 0s;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -124,6 +148,7 @@
     --ring: 36 90.2% 48.2%;
   }
 }
+
 
 @layer components {
   .auth-screen-bg {

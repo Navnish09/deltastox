@@ -1,7 +1,21 @@
 {
-  "auth" : {
-    "login" : "/deltastox/auth/login",
-    "createUser" : "/deltastox/auth/create-user"
+  "auth": {
+    "login": "/deltastox/auth/login",
+    "createUser": "/deltastox/auth/create-user",
+    "getUserDetails" : "/deltastox/auth/getUserDetails",
+    "updatePasswordAndMobile" : "/deltastox/auth/updateMobileAndPassword",
+    "uploadLogo" : "/deltastox/auth/postImage"
+  },
+  "oiAnalysis": {
+    "symbolExpiryList": "/deltastox/OiAnalysis/getSymbolExpiryList",
+    "strikePriceforSymbol": "/deltastox/OiAnalysis/getStrikePriceForSymbol",
+    "trendingOIData": "/deltastox/OiAnalysis/getTrendingOiData",
+    "niftyOpenInterest": "/deltastox/OiAnalysis/getNiftyOpenInterest",
+    "putCallRatio": "/deltastox/OiAnalysis/getPutCallRatio",
+    "symbolList": "/deltastox/OiAnalysis/getSymbolList",
+    "nseOptionChain": "/deltastox/OiAnalysis/getNseOptionChain",
+    "nifty50data": "/deltastox/OiAnalysis/getNifty50-data",
+    "globalMarketData": "/deltastox/OiAnalysis/getGlobalMarket"
   },
   "proData": {
     "preMarketData": "/deltastox/ProSetup/getValuefromForm9",
@@ -16,7 +30,9 @@
   "marketDepth": {
     "maxBoost": "/deltastox/MarketDepth/getValuefromFormSc5",
     "topGainers": "/deltastox/MarketDepth/getValuefromFormSc2",
-    "topLosers": "/deltastox/MarketDepth/getValuefromFormSc3"
+    "topLosers": "/deltastox/MarketDepth/getValuefromFormSc3",
+    "superStocks": "/deltastox/MarketDepth/getValuefromForm10",
+    "intradayStocks": "/deltastox/MarketDepth/getValuefromForm11"
   },
   "SectorialFlow": {
     "nifty50": "/deltastox/SectorialFlow/getValuefromFormSc7",

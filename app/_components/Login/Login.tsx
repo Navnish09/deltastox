@@ -81,15 +81,16 @@ export const Login = ({}: Props) => {
             >
               Welcome back! Login to DELTASTOX
             </p>
-            <div className={"w-full flex justify-center items-center"}>
+            {/* <div className={"w-full flex justify-center items-center"}>
               <Button
                 className="flex gap-2 items-center w-full"
                 variant={"outline"}
+                disabled
               >
                 <Google height={20} width={20} />
                 Login with Google
               </Button>
-            </div>
+            </div> */}
           </div>
 
           <Divider direction="horizontal" size="small" variant="dark" />
@@ -127,7 +128,7 @@ export const Login = ({}: Props) => {
 
             <div className="flex w-full justify-between items-center">
               <Checkbox
-                label="Remember password"
+                label="Remember me"
                 checked={rememberMe}
                 onCheckedChange={(checked) => setRememberMe(checked)}
               />

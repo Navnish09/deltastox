@@ -8,7 +8,7 @@ export const preMarketData = () => {
   return apiService.get(proData.preMarketData);
 };
 
-export const FiveMinMomemtum = () => {
+export const fiveMinMomemtum = () => {
   return apiService.get(proData["5MinMomentum"]);
 };
 

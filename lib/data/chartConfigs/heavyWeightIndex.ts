@@ -3,9 +3,9 @@ import { EChartsOption } from "echarts/types/dist/shared";
 export const heavyWeightIndexChartConfig: EChartsOption = {
   grid: {
     show: false,
-    left: 30,
-    top: 30,
-    right: 30,
+    left: 20,
+    top:10,
+    right: 0,
     bottom: 30,
   },
   tooltip: {
@@ -18,6 +18,11 @@ export const heavyWeightIndexChartConfig: EChartsOption = {
     type: "category",
     axisLabel: {
       interval: 0,
+      rotate: 25,
+      align: "center",
+      fontSize: 11,
+      fontWeight: "normal",
+      
     },
   },
   yAxis: {

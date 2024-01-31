@@ -2,14 +2,8 @@
 
 import { CellContext } from "@tanstack/react-table";
 import { DataCard } from "@/app/_components/DataCard";
-import {
-  cn,
-  createColumns,
-  createNegPosDataset,
-  framesInterval,
-} from "@/lib/utils";
+import { cn, createColumns, createNegPosDataset } from "@/lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
-import { useEffect, useState } from "react";
 import {
   heavyWeightIndex,
   longTermSwingBuy,
@@ -18,9 +12,8 @@ import {
   shortTermSwingSell,
 } from "@/services/apiServices";
 import { BasicChartCard } from "@/app/_components/BasicChartCard";
-import { sectorDifferenceChartConfig } from "@/lib/data/chartConfigs";
 import { heavyWeightIndexChartConfig } from "@/lib/data/chartConfigs/heavyWeightIndex";
-import { POLLING_INTERVAL } from "@/app/_globals/constant";
+import { useAPI } from "@/app/_globals/hooks/useAPI";
 
 type dataType = {
   Symbol: string;
@@ -47,7 +40,11 @@ const templates = {
 };
 
 const ShortTermSwingBuy = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: shortTermSwingBuy,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -56,32 +53,24 @@ const ShortTermSwingBuy = () => {
     ["param_3", "Sector"],
     ["param_4", "Date & Time"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      shortTermSwingBuy().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="SHORT TERM SWING (BUY)"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const ShortTermSwingSell = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: shortTermSwingSell,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -90,32 +79,24 @@ const ShortTermSwingSell = () => {
     ["param_3", "Sector"],
     ["param_4", "Date & Time"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      shortTermSwingSell().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="SHORT TERM SWING (SELL)"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const LongTermSwingBuy = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: longTermSwingBuy,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -124,32 +105,24 @@ const LongTermSwingBuy = () => {
     ["param_3", "Sector"],
     ["param_4", "Date & Time"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      longTermSwingBuy().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="LONG TERM SWING (BUY)"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const LongTermSwingSell = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: longTermSwingSell,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -159,47 +132,26 @@ const LongTermSwingSell = () => {
     ["param_4", "Date & Time"],
   ]);
 
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      longTermSwingSell().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
-
   return (
     <DataCard
       templates={templates}
       heading="LONG TERM SWING (SELL)"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const HeavyWeightIndex = () => {
-  const [chartData, setChartData] = useState([]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      heavyWeightIndex().then((res) => {
-        setChartData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
+  const { data: chartData } = useAPI({
+    requestHandler: heavyWeightIndex,
+    polling: true,
+  });
 
   return (
     <BasicChartCard
-      loading={!chartData.length}
+      loading={!chartData?.length}
       heading="Heavy Weight Index (Swing)"
       options={heavyWeightIndexChartConfig}
       dataset={createNegPosDataset(chartData, "Symbol", "param_0", 2)}

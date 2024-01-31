@@ -1,18 +1,17 @@
 "use client";
 import React from "react";
-
-import Link from "next/link";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { usePathname, useRouter } from "next/navigation";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import navigations from "../../../../lib/data/navigations.json";
+import navigations from "@/lib/data/navigations.json";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 export const TopNavigation = () => {
   const router = useRouter();
@@ -51,12 +50,12 @@ export const TopNavigation = () => {
           </PopoverTrigger>
           <PopoverContent align="end" sideOffset={10}>
             <div className="flex flex-col gap-2 text-sm">
-              {/* <Link
-                href={"/"}
+              <Link
+                href={"/profile"}
                 className="hover:bg-secondary/50 rounded-sm p-2 px-3"
               >
                 Profile
-              </Link> */}
+              </Link>
               <div
                 role="button"
                 className="hover:bg-secondary/50 rounded-sm p-2 px-3"
