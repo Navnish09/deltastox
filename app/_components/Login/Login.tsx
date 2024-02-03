@@ -41,6 +41,11 @@ const LoginSchema = z.object({
 type Props = {};
 
 export const Login = ({}: Props) => {
+  let previousEmail =
+    typeof window !== "undefined"
+      ? localStorage.getItem(REMEMBER_ME_KEY)
+      : null;
+
   const { toast } = useToast();
   const router = useRouter();
 
@@ -49,9 +54,9 @@ export const Login = ({}: Props) => {
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "",
+      email: previousEmail || "",
       password: "",
-      rememberMe: false,
+      rememberMe: !!previousEmail,
     },
     mode: "onChange",
     reValidateMode: "onChange",
@@ -86,16 +91,6 @@ export const Login = ({}: Props) => {
         });
     });
   };
-
-  useLayoutEffect(() => {
-    // Get previous email from local storage.
-    const previousEmail = localStorage.getItem(REMEMBER_ME_KEY);
-
-    if (previousEmail) {
-      form.setValue("email", previousEmail);
-      form.setValue("rememberMe", true);
-    }
-  }, []);
 
   return (
     <div
