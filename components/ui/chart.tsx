@@ -87,7 +87,7 @@ export const EChart = memo(
         ...settings,
         // Not merge is to always creating new components of the chart on rerenders to use the updated options
         // For reference:- https://echarts.apache.org/en/api.html#echartsInstance.setOption
-        notMerge: true,
+        // notMerge: true,
       });
 
       // Attach events to the chart instance

@@ -1,12 +1,14 @@
 import axios from "axios";
-import { userToken } from "./authServices";
+import { getToken, removeToken } from "./authServices";
+import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 instance.interceptors.request.use((config) => {
-  const token = userToken();
+  const token = getToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -18,8 +20,8 @@ instance.interceptors.response.use(
   (successRes) => successRes,
   ({ response }) => {
     if (response?.status === 401) {
-      localStorage.removeItem("token");
-      window.location.reload();
+      removeToken();
+      redirect("/login");
     }
     return Promise.reject(response);
   }

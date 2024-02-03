@@ -13,7 +13,7 @@ export const ThumbHeading = ({ heading, color, ...props }: Props) => {
     <>
       <div className="flex gap-3 items-center">
         <span
-          className={cn("w-4 h-8 rounded-sm", colorClass)}
+          className={cn("w-3 h-8 rounded-sm", colorClass)}
         ></span>
         <h3>{heading}</h3>
       </div>

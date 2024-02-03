@@ -11,3 +11,11 @@ export const topGainer = () => {
 export const topLoser = () => {
   return apiService.get(marketDepth.topLosers);
 };
+
+export const superStocks = () => {
+  return apiService.get(marketDepth.superStocks);
+}
+
+export const intradayStocks = () => {
+  return apiService.get(marketDepth.intradayStocks);
+}

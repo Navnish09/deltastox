@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useRef, useLayoutEffect, RefObject, ReactNode } from "react";
 
 import { cn } from "@/lib/utils"
 
@@ -6,7 +6,7 @@ const Table = React.forwardRef<
   HTMLTableElement,
   React.HTMLAttributes<HTMLTableElement>
 >(({ className, ...props }, ref) => (
-  <div className="relative w-full overflow-auto">
+  <div className="relative w-full h-full overflow-auto">
     <table
       ref={ref}
       className={cn("w-full caption-bottom text-sm", className)}
@@ -20,7 +20,7 @@ const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
   React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
-  <thead ref={ref} className={cn("[&_tr]:border-b", className)} {...props} />
+  <thead ref={ref} className={cn("[&_tr]:border-b sticky top-0 bg-card", className)} {...props} />
 ))
 TableHeader.displayName = "TableHeader"
 
@@ -104,6 +104,53 @@ const TableCaption = React.forwardRef<
   />
 ))
 TableCaption.displayName = "TableCaption"
+
+
+interface HeightWrapperProps {
+  height: number;
+  children: (ref: RefObject<HTMLTableElement>) => ReactNode;
+}
+
+// Wrapper to define a height break point to enable scrolling in table.
+export const TableHeightWrapper = ({
+  height,
+  children,
+}: HeightWrapperProps) => {
+  const heightRef = useRef<HTMLTableElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (heightRef.current) {
+      const resize_observer = new ResizeObserver((entries) => {
+        // Hides the unnecessary ResizeObserver Warning Message of Loop Limit Exceeded
+        // window.requestAnimationFrame(() => {
+          if (!Array.isArray(entries) || !entries.length) {
+            return;
+          }
+
+          const rect = entries[0].contentRect;
+          const contentHeight = rect.height;
+
+          if (containerRef.current) {
+            // Change the height of the container according to content height
+            containerRef.current.style.height =
+              contentHeight > height ? `${height}px` : "auto";
+          }
+        });
+      // });
+
+      resize_observer.observe(heightRef.current);
+      return () => resize_observer.disconnect();
+    }
+  }, [height]);
+
+  return (
+    <div id="Table-Height-Wrapper" ref={containerRef}>
+      {children(heightRef)}
+    </div>
+  );
+};
+
 
 export {
   Table,

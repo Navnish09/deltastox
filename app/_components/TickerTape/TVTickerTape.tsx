@@ -14,13 +14,14 @@ export const TickerTape = ({}: Props) => {
       "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
     script.async = true;
     script.innerHTML = JSON.stringify(tickertapeConfig);
-    containerRef.current.appendChild(script);
+    
+    if (!containerRef.current.hasChildNodes()) {
+      containerRef.current.appendChild(script);
+    }
   }, []);
 
   return (
-    <div className="tradingview-widget-container" ref={containerRef}>
-      <div className="tradingview-widget-container__widget"></div>
-    </div>
+    <div className="tradingview-widget-container" ref={containerRef}></div>
   );
 };
 

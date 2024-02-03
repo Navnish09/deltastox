@@ -8,6 +8,7 @@ export interface InputProps
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
   size?: "sm" | "lg";
+  label?: string;
 }
 
 const inputVariants = cva(
@@ -26,26 +27,33 @@ const inputVariants = cva(
 );
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, size, type, startIcon, endIcon, ...props }, ref) => {
+  ({ className, size, type, startIcon, endIcon, id, label, ...props }, ref) => {
     return (
-      <div
-        className={cn(
-          "w-full flex rounded-md border bg-secondary/50 px-3  text-secondary-foreground text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 gap-2 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
-          className
-        )}
-      >
-        {startIcon && (
-          <div className="flex items-center justify-center">{startIcon}</div>
-        )}
-        <input
-          type={type}
-          className={cn(inputVariants({ size }), className)}
-          ref={ref}
-          {...props}
-        />
-        {endIcon && (
-          <div className="flex items-center justify-center">{endIcon}</div>
-        )}
+      <div className="flex flex-col gap-2">
+        <label htmlFor={id} className="text-sm">
+          {label}
+        </label>
+        <div
+          className={cn(
+            "w-full flex rounded-md border bg-secondary/50 px-3 text-secondary-foreground text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 gap-2 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+            className
+          )}
+        >
+          {startIcon && (
+            <div className="flex items-center justify-center">{startIcon}</div>
+          )}
+          <input
+            autoComplete="off"
+            {...(id ? { id } : {})}
+            type={type}
+            className={cn(inputVariants({ size }), className)}
+            ref={ref}
+            {...props}
+          />
+          {endIcon && (
+            <div className="flex items-center justify-center">{endIcon}</div>
+          )}
+        </div>
       </div>
     );
   }

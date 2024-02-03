@@ -4,8 +4,8 @@ export const fiveMinuteMomentumChartConfig: EChartsOption = {
   grid: {
     show: false,
     left: 30,
-    top: 20,
-    right: 0,
+    top: 10,
+    right: 10,
     bottom: 65,
   },
   tooltip: {

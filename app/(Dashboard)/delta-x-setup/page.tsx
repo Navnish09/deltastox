@@ -1,6 +1,9 @@
 "use client";
 
-import { AccessorKeyColumnDef, CellContext } from "@tanstack/react-table";
+import { useEffect, useState } from "react";
+
+import { CellContext } from "@tanstack/react-table";
+
 import { DataCard } from "@/app/_components/DataCard";
 import {
   cn,
@@ -10,10 +13,8 @@ import {
   framesInterval,
 } from "@/lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
-import { useEffect, useState } from "react";
-import { downsideIntradayData } from "@/lib/data/downsideIntraday";
 import {
-  FiveMinMomemtum,
+  fiveMinMomemtum,
   downsideIntraday,
   downsideSwing,
   preMarketData,
@@ -21,10 +22,10 @@ import {
   upsideSwing,
   volumeContraction,
 } from "@/services/apiServices";
-import { POLLING_INTERVAL } from "@/app/_globals/constant";
 import { BasicChartCard } from "@/app/_components/BasicChartCard";
 import { preMarketDataChartConfig } from "@/lib/data/chartConfigs/preMarketData";
 import { fiveMinuteMomentumChartConfig } from "@/lib/data/chartConfigs";
+import { useAPI } from "@/app/_globals/hooks/useAPI";
 
 type dataType = {
   Symbol: string;
@@ -43,14 +44,17 @@ const templates = {
           ["text-destructive"]: +prop.row.original.param_0 < 0,
         })}
       >
-        {(prop.row.original.param_0).toFixed(2)}%
+        {prop.row.original.param_0.toFixed(2)}%
       </span>
     );
   },
 };
 
 const DownsideIntraday = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: downsideIntraday,
+    polling: true,
+  });
   const columns = createColumns([
     ["Symbol", "Name"],
     ["param_0", "Change"],
@@ -59,21 +63,9 @@ const DownsideIntraday = () => {
     ["param_3", "Date"],
   ]);
 
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      downsideIntraday().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
-
   return (
     <DataCard
-      loading={!tableData.length}
+      loading={!tableData?.length}
       templates={templates}
       heading="DOWNSIDE INTRADAY"
       data={tableData}
@@ -83,7 +75,10 @@ const DownsideIntraday = () => {
 };
 
 const UpsideIntraday = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: upsideIntraday,
+    polling: true,
+  });
   const columns = createColumns([
     ["Symbol", "Name"],
     ["param_0", "Change"],
@@ -92,21 +87,9 @@ const UpsideIntraday = () => {
     ["param_3", "Date"],
   ]);
 
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      upsideIntraday().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
-
   return (
     <DataCard
-      loading={!tableData.length}
+      loading={!tableData?.length}
       templates={templates}
       heading="UPSIDE INTRADAY"
       data={tableData}
@@ -116,7 +99,10 @@ const UpsideIntraday = () => {
 };
 
 const UpdiseSwing = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: upsideSwing,
+    polling: true,
+  });
   const columns = createColumns([
     ["Symbol", "Name"],
     ["param_0", "Change"],
@@ -125,21 +111,9 @@ const UpdiseSwing = () => {
     ["param_3", "Date"],
   ]);
 
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      upsideSwing().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
-
   return (
     <DataCard
-      loading={!tableData.length}
+      loading={!tableData?.length}
       templates={templates}
       heading="UPSIDE SWING"
       data={tableData}
@@ -149,7 +123,11 @@ const UpdiseSwing = () => {
 };
 
 const DownsideSwing = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: downsideSwing,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Name"],
     ["param_0", "Change"],
@@ -158,21 +136,9 @@ const DownsideSwing = () => {
     ["param_3", "Date"],
   ]);
 
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      downsideSwing().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
-
   return (
     <DataCard
-      loading={!tableData.length}
+      loading={!tableData?.length}
       templates={templates}
       heading="DOWNSIDE SWING"
       data={tableData}
@@ -182,7 +148,11 @@ const DownsideSwing = () => {
 };
 
 const VolumeContraction = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: volumeContraction,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Name"],
     ["param_0", "Change"],
@@ -191,21 +161,9 @@ const VolumeContraction = () => {
     ["param_3", "Date"],
   ]);
 
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      volumeContraction().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
-
   return (
     <DataCard
-      loading={!tableData.length}
+      loading={!tableData?.length}
       templates={templates}
       heading="VOLUME CONTRACTION"
       data={tableData}
@@ -215,23 +173,14 @@ const VolumeContraction = () => {
 };
 
 const SectorialDifference = () => {
-  const [chartData, setChartData] = useState([]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      preMarketData().then((res) => {
-        setChartData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
+  const { data: chartData } = useAPI({
+    requestHandler: preMarketData,
+    polling: true,
+  });
 
   return (
     <BasicChartCard
-      loading={!chartData.length}
+      loading={!chartData?.length}
       heading="Pre Market Data"
       options={preMarketDataChartConfig}
       dataset={createNegPosDataset(chartData, "Symbol", "param_0", 2)}
@@ -239,25 +188,15 @@ const SectorialDifference = () => {
   );
 };
 
-
 const FiveMinuteMomemtum = () => {
-  const [chartData, setChartData] = useState([]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      FiveMinMomemtum().then((res) => {
-        setChartData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
+  const { data: chartData } = useAPI({
+    requestHandler: fiveMinMomemtum,
+    polling: true,
+  });
 
   return (
     <BasicChartCard
-      loading={!chartData.length}
+      loading={!chartData?.length}
       heading="5-Min Momentum"
       options={fiveMinuteMomentumChartConfig}
       dataset={createBasicDataset(chartData, "Symbol", "param_0", 1)}
@@ -267,7 +206,7 @@ const FiveMinuteMomemtum = () => {
 
 export default function DeltaXSetup() {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-20 py-5">
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border gap-3">

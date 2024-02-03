@@ -29,7 +29,7 @@ import {
 } from "@/services/apiServices";
 import { BasicChartCard } from "@/app/_components/BasicChartCard";
 import { sectorDifferenceChartConfig } from "@/lib/data/chartConfigs";
-import { POLLING_INTERVAL } from "@/app/_globals/constant";
+import { useAPI } from "@/app/_globals/hooks/useAPI";
 
 type dataType = {
   Symbol: string;
@@ -48,14 +48,18 @@ const templates = {
           ["text-destructive"]: +prop.row.original.param_2 < 0,
         })}
       >
-        {(prop.row.original.param_2).toFixed(2)}%
+        {prop.row.original.param_2.toFixed(2)}%
       </span>
     );
   },
 };
 
 const Nifty50 = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: nifty50,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -63,32 +67,24 @@ const Nifty50 = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      nifty50().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY 50"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const BankNifty = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: bankNifty,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -96,32 +92,24 @@ const BankNifty = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      bankNifty().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="BANKNIFTY"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyAuto = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyAuto,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -129,32 +117,24 @@ const NiftyAuto = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyAuto().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTYAUTO"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyFinServ = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyFinServ,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -162,32 +142,24 @@ const NiftyFinServ = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyFinServ().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY FIN-SERV"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyFMCG = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyFMCG,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -195,32 +167,24 @@ const NiftyFMCG = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyFMCG().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY FMCG"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyIT = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyIT,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -228,32 +192,24 @@ const NiftyIT = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyIT().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY IT"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyEnergy = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyEnergy,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -261,32 +217,24 @@ const NiftyEnergy = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyEnergy().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY ENERGY"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyMetal = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyMetal,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -294,32 +242,24 @@ const NiftyMetal = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyMetal().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY METAL"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyPharma = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyPharma,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -327,32 +267,24 @@ const NiftyPharma = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyPharma().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY PHARMA"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyMedia = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyMedia,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -360,32 +292,24 @@ const NiftyMedia = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyMedia().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY MEDIA"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyPSUBanks = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyPsuBanks,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -393,32 +317,24 @@ const NiftyPSUBanks = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyPsuBanks().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY PSU BANKS"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyPvtBanks = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyPvtBank,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -426,32 +342,24 @@ const NiftyPvtBanks = () => {
     ["param_2", "% Change"],
     ["param_3", "Aplha V"],
   ]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyPvtBank().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
 
   return (
     <DataCard
       templates={templates}
       heading="NIFTY PVT BANKS"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const NiftyReality = () => {
-  const [tableData, setTableData] = useState([]);
+  const { data: tableData } = useAPI({
+    requestHandler: niftyRealty,
+    polling: true,
+  });
+
   const columns = createColumns([
     ["Symbol", "Stock Name"],
     ["param_0", "LTP"],
@@ -460,47 +368,26 @@ const NiftyReality = () => {
     ["param_3", "Aplha V"],
   ]);
 
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      niftyRealty().then((res) => {
-        setTableData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
-
   return (
     <DataCard
       templates={templates}
       heading="NIFTY REALITY"
       data={tableData}
-      loading={!tableData.length}
+      loading={!tableData?.length}
       columns={columns}
     />
   );
 };
 
 const SectorialDifference = () => {
-  const [chartData, setChartData] = useState([]);
-
-  useEffect(() => {
-    const { stop } = framesInterval(() => {
-      sectorialDifference().then((res) => {
-        setChartData(res.data.data);
-      });
-    }, POLLING_INTERVAL);
-
-    return () => {
-      stop();
-    };
-  }, []);
+  const { data: chartData } = useAPI({
+    requestHandler: sectorialDifference,
+    polling: true,
+  });
 
   return (
     <BasicChartCard
-      loading={!chartData.length}
+      loading={!chartData?.length}
       heading="Sectorial Difference"
       options={sectorDifferenceChartConfig}
       dataset={createNegPosDataset(chartData, "Symbol", "param_0", 2)}
@@ -510,7 +397,7 @@ const SectorialDifference = () => {
 
 export default function SectorDifference() {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-20 py-5">
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border">

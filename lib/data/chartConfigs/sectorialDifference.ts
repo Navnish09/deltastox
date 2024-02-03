@@ -4,8 +4,8 @@ export const sectorDifferenceChartConfig: EChartsOption = {
   grid: {
     show: false,
     left: 30,
-    top: 30,
-    right: 30,
+    top: 10,
+    right: 0,
     bottom: 30,
   },
   tooltip: {
