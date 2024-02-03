@@ -17,6 +17,8 @@ import { useUser } from "../../context/AuthContext";
 import { User } from "lucide-react";
 
 export const TopNavigation = () => {
+  const [open, setOpen] = React.useState(false);
+
   const { user, isUserReady } = useUser();
   const router = useRouter();
   const pathname = usePathname();
@@ -41,7 +43,7 @@ export const TopNavigation = () => {
           <h3>{pathHeading?.label}</h3>
         </div>
 
-        <Popover>
+        <Popover onOpenChange={setOpen} open={open}>
           <PopoverTrigger>
             <div className="flex items-center gap-2">
               <span className="text-sm">{user?.name}</span>
@@ -62,7 +64,10 @@ export const TopNavigation = () => {
             </div>
           </PopoverTrigger>
           <PopoverContent align="end" sideOffset={10}>
-            <div className="flex flex-col gap-2 text-sm">
+            <div
+              className="flex flex-col gap-2 text-sm"
+              onClick={() => setOpen(false)}
+            >
               <Link
                 href={"/profile"}
                 className="hover:bg-secondary/50 rounded-sm p-2 px-3"
