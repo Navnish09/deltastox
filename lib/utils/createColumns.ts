@@ -1,7 +1,7 @@
 // Function to create columns for the react-table
 // https://tanstack.com/table/latest/docs/api/core/column-def
-export const createColumns = <E extends Array<string>>(
-  entriesData: E[]
+export const createColumns = <E extends Readonly<Array<string>>>(
+  entriesData: Readonly<E[]>
 ): Array<{
   accessorKey: E[0];
   header: E[1];
