@@ -74,6 +74,7 @@ export const Login = ({}: Props) => {
             toast({
               title: "Invalid credentials",
               description: "Please check your email and password",
+              variant: "destructive",
             });
           }
         })
