@@ -397,7 +397,7 @@ const SectorialDifference = () => {
 
 export default function SectorDifference() {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-20 py-5">
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border">

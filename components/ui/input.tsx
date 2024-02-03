@@ -43,6 +43,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <div className="flex items-center justify-center">{startIcon}</div>
           )}
           <input
+            autoComplete="off"
             {...(id ? { id } : {})}
             type={type}
             className={cn(inputVariants({ size }), className)}

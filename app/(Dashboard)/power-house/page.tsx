@@ -213,8 +213,8 @@ const IntradayStocks = () => {
 
 export default function PowerHouse() {
   return (
-    <div className="flex flex-col gap-14">
-      <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-14 py-5">
+      {/* <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <Card>
           <CardHeader>
@@ -272,7 +272,7 @@ export default function PowerHouse() {
             </div>
           </CardContent>
         </Card>
-      </div>
+      </div> */}
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border gap-3">

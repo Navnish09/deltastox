@@ -2,103 +2,103 @@ export const tickertapeConfig = {
   symbols: [
     {
       description: "Reliance",
-      proName: "NSE:RELIANCE",
+      proName: "BSE:RELIANCE",
     },
     {
       description: "HDFC Bank",
-      proName: "NSE:HDFCBANK",
+      proName: "BSE:HDFCBANK",
     },
     {
       description: "ICICI Bank",
-      proName: "NSE:ICICIBANK",
+      proName: "BSE:ICICIBANK",
     },
     {
       description: "Infosys",
-      proName: "NSE:INFY",
+      proName: "BSE:INFY",
     },
     {
       description: "ITC",
-      proName: "NSE:ITC",
+      proName: "BSE:ITC",
     },
     {
       description: "Larsen & Toubro ",
-      proName: "NSE:LT",
+      proName: "BSE:LT",
     },
     {
       description: "TCS",
-      proName: "NSE:TCS",
+      proName: "BSE:TCS",
     },
     {
       description: "Axis Bank",
-      proName: "NSE:AXISBANK",
+      proName: "BSE:AXISBANK",
     },
     {
       description: "Kotak Mahindra Bank",
-      proName: "NSE:KOTAKBANK",
+      proName: "BSE:KOTAKBANK",
     },
     {
       description: "Bharti Airtel",
-      proName: "NSE:BHARTIARTL",
+      proName: "BSE:BHARTIARTL",
     },
     {
       description: "Hindustan Unilever",
-      proName: "NSE:HINDUNILVR",
+      proName: "BSE:HINDUNILVR",
     },
     {
       description: "SBI",
-      proName: "NSE:SBIN",
+      proName: "BSE:SBIN",
     },
     {
       description: "Bajaj Finance",
-      proName: "NSE:BAJFINANCE",
+      proName: "BSE:BAJFINANCE",
     },
     {
       description: "Asian Paints",
-      proName: "NSE:ASIANPAINT",
+      proName: "BSE:ASIANPAINT",
     },
     {
       description: "Mahindra & Mahindra ",
-      proName: "NSE:M_M",
+      proName: "BSE:M_M",
     },
     {
       description: "Titan",
-      proName: "NSE:TITAN",
+      proName: "BSE:TITAN",
     },
     {
       description: "HCL Tech",
-      proName: "NSE:HCLTECH",
+      proName: "BSE:HCLTECH",
     },
     {
       description: "Maruti Suzuki ",
-      proName: "NSE:MARUTI",
+      proName: "BSE:MARUTI",
     },
     {
       description: "Sun Pharma",
-      proName: "NSE:SUNPHARMA",
+      proName: "BSE:SUNPHARMA",
     },
     {
       description: "NTPC",
-      proName: "NSE:NTPC",
+      proName: "BSE:NTPC",
     },
     {
       description: "Tata Motors",
-      proName: "NSE:TATAMOTORS",
+      proName: "BSE:TATAMOTORS",
     },
     {
       description: "Tata Steel",
-      proName: "NSE:TATASTEEL",
+      proName: "BSE:TATASTEEL",
     },
     {
       description: "UltraTech Cement",
-      proName: "NSE:ULTRACEMCO",
+      proName: "BSE:ULTRACEMCO",
     },
     {
       description: "IndusInd Bank",
-      proName: "NSE:INDUSINDBK",
+      proName: "BSE:INDUSINDBK",
     },
     {
       description: "Bajaj Finserv",
-      proName: "NSE:BAJAJFINSV",
+      proName: "BSE:BAJAJFINSV",
     },
   ],
   showSymbolLogo: true,

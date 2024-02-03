@@ -15,6 +15,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
+import { Globe } from "lucide-react";
 
 const IconList = {
   Dashboard: <Home height={24} width={24} />,

@@ -206,7 +206,7 @@ const FiveMinuteMomemtum = () => {
 
 export default function DeltaXSetup() {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-20 py-5">
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border gap-3">

@@ -1,5 +1,4 @@
 import { Inter } from "next/font/google";
-import AuthProtection from "../_components/AuthProtection/AuthProtection";
 
 import "../globals.css";
 import { Toaster } from "@/components/ui/toaster";
@@ -19,7 +18,7 @@ export default function AuthLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} dark auth-screen-bg`}>
-        <AuthProtection type="public">{children}</AuthProtection>
+        {children}
         <Toaster />
       </body>
     </html>

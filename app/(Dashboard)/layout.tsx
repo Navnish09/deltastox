@@ -2,12 +2,11 @@ import { Inter } from "next/font/google";
 
 import { SideNavigation } from "@globals/components/Side-Navigation";
 import { TopNavigation } from "@globals/components/Top-Navigation";
-
-import classes from "./Dashboard.module.scss";
-import "../globals.css";
 import { cn } from "@/lib/utils";
-import AuthProtection from "../_components/AuthProtection/AuthProtection";
 import { Toaster } from "@/components/ui/toaster";
+
+import "../globals.css";
+import { AuthProvider } from "../_globals/context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,15 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(inter.className, "dark bg-background")}>
-        <AuthProtection type="protected">
+        <AuthProvider>
           <div className={"relative h-full flex"}>
             <SideNavigation />
             <div className={"flex-grow overflow-auto"}>
               <TopNavigation />
-              <main className="px-4 py-10 isolate">{children}</main>
+              <main className="px-4 py-2 isolate">{children}</main>
             </div>
           </div>
-        </AuthProtection>
+        </AuthProvider>
         <Toaster />
       </body>
     </html>

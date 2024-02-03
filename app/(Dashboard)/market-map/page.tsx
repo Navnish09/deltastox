@@ -27,7 +27,7 @@ const StockHeatMap = () => {
 
 export default function SwingSection() {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 py-5">
       <ThumbHeading heading="Market Info" />
       <div className="flex flex-col gap-10">
         <OITrending />

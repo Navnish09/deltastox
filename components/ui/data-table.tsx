@@ -42,6 +42,7 @@ interface DataTableProps<TData, TValue> {
   loading?: boolean;
   className?: string;
   heightRef?: React.RefObject<HTMLTableElement>;
+  align?: "left" | "center" | "right";
 }
 
 const TableSkeleton = ({
@@ -62,23 +63,13 @@ const TableSkeleton = ({
   );
 };
 
-const SortIcon = ({
-  canSort,
-  sortKey,
-  className,
-}: {
-  canSort: boolean;
-  sortKey: string;
-  className?: string;
-}) => {
+const SortIcon = ({ sortKey }: { sortKey: string }) => {
   return (
     <>
-      {(canSort &&
-        {
-          asc: <ChevronUp className="ml-1" height={18} width={18} />,
-          desc: <ChevronDown className="ml-1" height={18} width={18} />,
-        }[sortKey]) ??
-        null}
+      {{
+        asc: <ChevronUp className="ml-1" height={18} width={18} />,
+        desc: <ChevronDown className="ml-1" height={18} width={18} />,
+      }[sortKey] ?? null}
     </>
   );
 };
@@ -91,6 +82,7 @@ export function DataTable<TData, TValue>({
   className,
   pagination = true,
   heightRef,
+  align = "left",
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
@@ -147,7 +139,17 @@ export function DataTable<TData, TValue>({
   return (
     <div className="space-y-4 h-full">
       <div className="rounded-md border h-full">
-        <Table className={className} ref={heightRef}>
+        <Table
+          ref={heightRef}
+          className={cn(
+            {
+              center: "text-center",
+              left: "text-left",
+              right: "text-right",
+            }[align],
+            className
+          )}
+        >
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -166,18 +168,35 @@ export function DataTable<TData, TValue>({
                           }
                         : {})}
                     >
-                      <div className="flex items-center w-full h-full">
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-
-                        <SortIcon
-                          canSort={header.column.getCanSort()}
-                          sortKey={header.column.getIsSorted() as string}
-                        />
+                      <div
+                        className={cn(
+                          "flex items-center",
+                          {
+                            center: "justify-center",
+                            left: "justify-start",
+                            right: "justify-end",
+                          }[align]
+                        )}
+                      >
+                        <div
+                          className={cn(
+                            "inline-flex items-center p-2",
+                            header.column.getCanSort() &&
+                              "rounded-md hover:bg-background/30"
+                          )}
+                        >
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                          {header.column.getCanSort() && (
+                            <SortIcon
+                              sortKey={header.column.getIsSorted() as string}
+                            />
+                          )}
+                        </div>
                       </div>
                     </TableHead>
                   );

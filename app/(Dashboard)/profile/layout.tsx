@@ -29,14 +29,12 @@ const navigationData = {
   ],
 };
 
-export default function ProfileLayout({
-  children,
-}: PropsWithChildren<{}>) {
+export default function ProfileLayout({ children }: PropsWithChildren<{}>) {
   const pathname = usePathname();
 
   return (
     <div className="flex flex-col gap-14">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-6 py-5">
         <ThumbHeading heading="Profile" />
         <Card className="p-5">
           <div className="flex">

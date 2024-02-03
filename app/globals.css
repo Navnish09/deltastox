@@ -28,15 +28,19 @@ select:-webkit-autofill:focus {
   /* border: 1px solid ; */
   -webkit-text-fill-color: hsl(var(--secondary-foreground));
   -webkit-box-shadow: 0 0 0px 1000px hsl(var(--input-background)) inset;
-  transition: background-color 50s ease-in-out 0s;
+  transition: background-color 50000s ease-in-out 0s;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin: 0; 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.js-copyright-label {
+  display: none;
 }
 
 @layer base {
@@ -148,7 +152,6 @@ input[type=number]::-webkit-outer-spin-button {
     --ring: 36 90.2% 48.2%;
   }
 }
-
 
 @layer components {
   .auth-screen-bg {

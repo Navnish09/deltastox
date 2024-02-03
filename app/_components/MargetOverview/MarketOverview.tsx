@@ -2,23 +2,23 @@
 
 import React, { useEffect, useRef } from "react";
 
-import { heatmapConfig } from "@/lib/data/HeatmapConfigs";
+import { marketOverviewConfigs } from "@/lib/data/marketOverviewConfigs";
 
 type Props = {};
 
-export const TVHeatMap = ({}: Props) => {
+export const MarketOverview = ({}: Props) => {
   const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if(!container.current) return;
+    if (!container.current) return;
     const script = document.createElement("script");
     script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js";
+      "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
     script.type = "text/javascript";
     script.async = true;
-    script.innerHTML = JSON.stringify(heatmapConfig);
+    script.innerHTML = JSON.stringify(marketOverviewConfigs);
 
-    if(!container.current.hasChildNodes()) {
+    if (!container.current.hasChildNodes()) {
       container.current?.appendChild(script);
     }
   }, []);
@@ -26,4 +26,4 @@ export const TVHeatMap = ({}: Props) => {
   return <div className="tradingview-widget-container" ref={container}></div>;
 };
 
-export default TVHeatMap;
+export default MarketOverview;

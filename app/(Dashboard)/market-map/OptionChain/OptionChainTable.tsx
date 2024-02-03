@@ -92,6 +92,7 @@ export const OptionChainTable = ({
           columns={columns}
           data={data || []}
           templates={templates}
+          align="center"
         />
       )}
     </TableHeightWrapper>

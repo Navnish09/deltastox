@@ -95,7 +95,7 @@ export const useAPI = <
     return () => {
       intervalRef.current && clearTimeout(intervalRef.current);
     };
-  }, [params, enable]);
+  }, [params, enable, polling]);
 
   useEffect(() => {
     if (!enable) {
