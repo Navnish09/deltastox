@@ -78,9 +78,9 @@ export default function Home() {
             <Separator orientation="vertical" />
             <Popover>
               <PopoverTrigger>
-                <Button size={"icon"} variant={"secondary"}>
+                <div className="p-2 hover:bg-secondary transition rounded-md">
                   <Globe />
-                </Button>
+                </div>
               </PopoverTrigger>
               <PopoverContent align="end" sideOffset={10}>
                 <div className="h-[275px] w-[500px]">

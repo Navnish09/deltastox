@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getToken, removeToken } from "./authServices";
-import { redirect } from "next/navigation";
+import { Router } from "next/router";
 // import { redirect } from "next/navigation";
 
 const instance = axios.create({
@@ -21,7 +21,7 @@ instance.interceptors.response.use(
   ({ response }) => {
     if (response?.status === 401) {
       removeToken();
-      redirect("/login");
+      window.location.href = "/login";
     }
     return Promise.reject(response);
   }
