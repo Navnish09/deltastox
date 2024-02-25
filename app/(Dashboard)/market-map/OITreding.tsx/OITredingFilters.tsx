@@ -135,7 +135,7 @@ export const OITrendingFilters = ({
   return (
     <div className="flex justify-between items-center flex-wrap gap-3">
       <h4>{filters.symbol} Trending OI</h4>
-      <div className="flex gap-5">
+      <div className="flex md:gap-5 gap-3 justify-end flex-wrap">
         <div>
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -233,7 +233,10 @@ export const OITrendingFilters = ({
               <SelectGroup>
                 {strikePrices?.map((strikePrice) => {
                   return (
-                    <SelectItem value={strikePrice.toString()}>
+                    <SelectItem
+                      key={strikePrice}
+                      value={strikePrice.toString()}
+                    >
                       {strikePrice}
                     </SelectItem>
                   );

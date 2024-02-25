@@ -18,6 +18,10 @@ export const sectorDifferenceChartConfig: EChartsOption = {
     type: "category",
     axisLabel: {
       interval: 0,
+      rotate: 25,
+      align: "center",
+      fontSize: 11,
+      fontWeight: "normal",
     },
   },
   yAxis: {
@@ -33,7 +37,7 @@ export const sectorDifferenceChartConfig: EChartsOption = {
     {
       name: "Gain",
       type: "bar",
-      barWidth: 40,
+      barWidth: 30,
       itemStyle: {
         borderRadius: [5, 5, 0, 0],
       },

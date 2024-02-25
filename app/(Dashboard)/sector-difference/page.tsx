@@ -401,51 +401,49 @@ export default function SectorDifference() {
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border">
-          <div className="flex-grow">
-            <SectorialDifference />
-          </div>
+          <SectorialDifference />
         </div>
       </div>
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border gap-3">
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <Nifty50 />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <BankNifty />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyAuto />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyFinServ />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyFMCG />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyIT />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyEnergy />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyMetal />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyPharma />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyPSUBanks />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyPvtBanks />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyReality />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 max-w-full">
             <NiftyMedia />
           </div>
         </div>

@@ -25,8 +25,8 @@ const NiftyCard = () => {
 
   return (
     <div className="flex gap-3 items-center">
-      <h5>NIFTY</h5>
-      <h4 className="text-destructive">19322.55</h4>
+      <h5 className="text-xs md:text-base">NIFTY</h5>
+      <h4 className="text-destructive text-sm md:text-lg">19322.55</h4>
       <Card className="w-fit rounded-md">
         <span className="text-destructive flex p-1 gap-1 items-center text-xs font-semibold">
           <ArrowDownIcon height={18} width={18} /> 7.82%
@@ -46,8 +46,8 @@ const BankNiftyCard = () => {
     // <Card>
     //   <CardHeader>
     <div className="flex gap-3 items-center">
-      <h5>BANKNIFTY</h5>
-      <h4 className="text-success">44,888.24</h4>
+      <h5 className="text-xs md:text-base">BANKNIFTY</h5>
+      <h4 className="text-success text-sm md:text-lg">44,888.24</h4>
       <Card className="w-fit rounded-md">
         <span className="text-success flex p-1 gap-1 items-center text-xs font-semibold">
           <ArrowUpIcon height={18} width={18} /> 3.32%
@@ -62,16 +62,16 @@ const BankNiftyCard = () => {
 export default function Home() {
   return (
     <div className="flex flex-col gap-10">
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col md:gap-8 gap-6">
         <div className="flex flex-col">
           <Card className="min-h-[45px]">
             <TickerTape />
           </Card>
         </div>
-        <div className="flex item-center justify-between">
+        <div className="flex item-center justify-between flex-wrap gap-2">
           <ThumbHeading heading="Market Info" />
           <div className="flex justify-center gap-4">
-            <div className="flex gap-5">
+            <div className="flex md:gap-5 flex-wrap">
               <NiftyCard />
               <BankNiftyCard />
             </div>
@@ -79,7 +79,7 @@ export default function Home() {
             <Popover>
               <PopoverTrigger>
                 <div className="p-2 hover:bg-secondary transition rounded-md">
-                  <Globe />
+                  <Globe height={22} width={22} />
                 </div>
               </PopoverTrigger>
               <PopoverContent align="end" sideOffset={10}>

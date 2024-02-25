@@ -79,7 +79,7 @@ export const OITrendingFilters = ({
   return (
     <div className="flex justify-between items-center flex-wrap gap-3">
       <h4>{filters.symbol} Option Chain</h4>
-      <div className="flex gap-5">
+      <div className="flex md:gap-5 gap-3 justify-between flex-wrap flex-grow">
         <div>
           <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
@@ -149,7 +149,7 @@ export const OITrendingFilters = ({
               <SelectGroup>
                 {expiryDates?.map((expiryDate) => {
                   return (
-                    <SelectItem value={expiryDate}>
+                    <SelectItem key={expiryDate} value={expiryDate}>
                       {dayjs(expiryDate).format("DD MMM YYYY")}
                     </SelectItem>
                   );

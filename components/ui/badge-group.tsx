@@ -40,7 +40,7 @@ export const BadgeGroup = <V extends string | number>({
         <Badge
           variant={option.value === selected ? "default" : "secondary"}
           key={option.value}
-          className="py-1 cursor-pointer"
+          className="py-2 cursor-pointer"
           onClick={() => handleClick(option.value)}
         >
           {option.label}

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useEffect, useLayoutEffect, useRef } from "react";
 import {
   DatasetComponentOption,
   TitleComponent,
@@ -26,6 +26,7 @@ export interface ChartProps {
     [key: string]: (params: any) => boolean | void;
   };
   resizeChart?: boolean;
+  parentRef?: HTMLDivElement | Window;
 }
 export const EChart = memo(
   ({
@@ -36,11 +37,12 @@ export const EChart = memo(
     onLoad,
     events,
     resizeChart = false,
+    parentRef = window,
   }: ChartProps) => {
     const chartRef = useRef<HTMLDivElement>(null);
 
     //initialize chart
-    useEffect(() => {
+    useLayoutEffect(() => {
       let chart: echarts.ECharts | undefined;
 
       if (chartRef.current) {
@@ -63,11 +65,21 @@ export const EChart = memo(
       }
 
       const resizeChart = () => chart?.resize();
+
+      const observer = new ResizeObserver((entries) => {
+        resizeChart();
+      });
+
+      if (parentRef !== window) {
+        observer.observe(parentRef as HTMLElement);
+      }
+
       window.addEventListener("resize", resizeChart);
 
       return () => {
         chart?.dispose();
         window.removeEventListener("resize", resizeChart);
+        observer.disconnect();
       };
     }, [theme]);
 

@@ -34,7 +34,7 @@ export const fiveMinuteMomentumChartConfig: EChartsOption = {
   series: [
     {
       type: "bar",
-      barWidth: 10,
+      barWidth: 8,
       roundCap: true,
       itemStyle: {
         borderRadius: [5, 5, 0, 0],

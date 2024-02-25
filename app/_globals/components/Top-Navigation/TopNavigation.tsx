@@ -14,11 +14,12 @@ import {
 } from "@/components/ui/popover";
 import { removeToken } from "@/services/authServices";
 import { useUser } from "../../context/AuthContext";
-import { User } from "lucide-react";
+import { Menu, User } from "lucide-react";
+import { useNavigationContext } from "../../context/NavigationContext";
 
 export const TopNavigation = () => {
   const [open, setOpen] = React.useState(false);
-
+  const { setSideNavigationOpenState } = useNavigationContext();
   const { user, isUserReady } = useUser();
   const router = useRouter();
   const pathname = usePathname();
@@ -35,11 +36,17 @@ export const TopNavigation = () => {
   return (
     <div
       className={
-        "sticky w-full max-h-24 px-8 py-4 min-h-[75px] top-0 bg-darked-background border-l-2 z-[1]"
+        "sticky w-full max-h-24 px-8 pl-2 py-4 min-h-[75px] top-0 bg-darked-background border-l-2 z-[1]"
       }
     >
       <div className={"flex justify-between items-center"}>
-        <div>
+        <div className="flex items-center gap-1">
+          <div
+            className="p-2 hover:bg-secondary transition rounded-md cursor-pointer"
+            onClick={() => setSideNavigationOpenState((prev) => !prev)}
+          >
+            <Menu height={20} width={20} />
+          </div>
           <h3>{pathHeading?.label}</h3>
         </div>
 

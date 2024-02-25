@@ -29,9 +29,9 @@ export const PutCallRatioFilters = ({
   return (
     <div className="flex justify-between items-center flex-wrap gap-3">
       <h4>{PCR_TYPE_LABELS[filters.type]} Put Call Ratio</h4>
-      <div className="flex gap-5">
-        <div>
-          {/* <Select
+      <div className="flex gap-5 justify-end flex-wrap">
+        {/* <div>
+          <Select
             value={filters?.type}
             onValueChange={(value) => {
               setFilters((prev) => ({
@@ -53,7 +53,31 @@ export const PutCallRatioFilters = ({
                 ))}
               </SelectGroup>
             </SelectContent>
-          </Select> */}
+          </Select>
+        </div> */}
+        <div>
+          <Select
+            value={filters?.expiry_date}
+            onValueChange={(value) => {
+              setFilters((prev) => ({ ...prev, expiry_date: value }));
+            }}
+            disabled={!expiryDates.length || isDataLoading}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Expiry Date" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {expiryDates?.map((expiryDate) => {
+                  return (
+                    <SelectItem key={expiryDate} value={expiryDate}>
+                      {dayjs(expiryDate).format("DD MMM YYYY")}
+                    </SelectItem>
+                  );
+                })}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
         <BadgeGroup
           options={[
@@ -75,30 +99,6 @@ export const PutCallRatioFilters = ({
             setFilters((prev) => ({ ...prev, type: value }));
           }}
         />
-        <div>
-          <Select
-            value={filters?.expiry_date}
-            onValueChange={(value) => {
-              setFilters((prev) => ({ ...prev, expiry_date: value }));
-            }}
-            disabled={!expiryDates.length || isDataLoading}
-          >
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Expiry Date" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {expiryDates?.map((expiryDate) => {
-                  return (
-                    <SelectItem value={expiryDate}>
-                      {dayjs(expiryDate).format("DD MMM YYYY")}
-                    </SelectItem>
-                  );
-                })}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </div>
       </div>
     </div>
   );
