@@ -4,7 +4,7 @@ export const heavyWeightIndexChartConfig: EChartsOption = {
   grid: {
     show: false,
     left: 20,
-    top:10,
+    top: 10,
     right: 0,
     bottom: 30,
   },
@@ -20,9 +20,8 @@ export const heavyWeightIndexChartConfig: EChartsOption = {
       interval: 0,
       rotate: 25,
       align: "center",
-      fontSize: 11,
+      fontSize: 10,
       fontWeight: "normal",
-      
     },
   },
   yAxis: {
@@ -38,7 +37,7 @@ export const heavyWeightIndexChartConfig: EChartsOption = {
     {
       name: "Gain",
       type: "bar",
-      barWidth: 40,
+      barWidth: 30,
       roundCap: true,
       itemStyle: {
         borderRadius: [5, 5, 0, 0],

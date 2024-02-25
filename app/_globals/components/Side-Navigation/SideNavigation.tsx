@@ -15,7 +15,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { Globe } from "lucide-react";
+import { X } from "lucide-react";
+import { useNavigationContext } from "../../context/NavigationContext";
 
 const IconList = {
   Dashboard: <Home height={24} width={24} />,
@@ -27,22 +28,52 @@ const IconList = {
 };
 
 export const SideNavigation = () => {
+  const { sideNavigationOpenState, setSideNavigationOpenState } =
+    useNavigationContext();
+
   const pathname = usePathname();
 
   return (
     <div
-      className={
-        "bg-darked-background sticky h-full w-[250px] min-w-[250px] flex justify-center py-5 px-5 top-0"
-      }
+      className={cn(
+        "bg-darked-background md:static h-full md:max-w-[250px] transition-all duration-200 flex justify-center py-5 px-5 top-0 absolute z-[1] w-full ",
+        {
+          ["md:max-w-[90px] overflow-hidden -translate-x-full md:-translate-x-0"]:
+            !sideNavigationOpenState,
+        }
+      )}
     >
-      <div className={"flex flex-col gap-12 w-full"}>
-        <div className={"flex justify-center"}>
-          <img src="/Images/Delta_Logo.svg" width={175} alt="Logo" />
+      <div
+        className={cn(
+          "flex flex-col gap-12 w-full opacity-100 overflow-hidden transition-opacity"
+        )}
+      >
+        <div className={"flex md:justify-start justify-between items-center"}>
+          <img
+            src="/Images/Delta_Logo.svg"
+            width={175}
+            alt="Logo"
+            className={cn("w-44 h-12 min-w-[11rem] min-h-[3rem]")}
+          />
+          <X
+            className="md:hidden h-6 w-6 text-muted-foreground"
+            onClick={() => {
+              setSideNavigationOpenState(false);
+            }}
+          />
         </div>
-        <NavigationMenu orientation="vertical" className="w-full items-start">
-          <NavigationMenuList className="flex flex-col gap-2 w-full">
+        <NavigationMenu
+          orientation="vertical"
+          className="w-full items-start overflow-hidden"
+        >
+          <NavigationMenuList className="flex flex-col gap-2 w-full items-start">
             {navigationData.items.map((item) => (
-              <NavigationMenuItem key={item.label} className="w-full">
+              <NavigationMenuItem
+                key={item.label}
+                className={cn("w-full !m-0", {
+                  // ["w-max"]: !sideNavigationOpenState,
+                })}
+              >
                 <Link href={item.href} passHref legacyBehavior>
                   <NavigationMenuLink
                     className={cn(
@@ -61,8 +92,9 @@ export const SideNavigation = () => {
                       {IconList[`${item.icon as keyof typeof IconList}`]}
                     </span>
                     <div
-                      className={cn("font-semibold text-sm", {
+                      className={cn("font-semibold text-sm whitespace-nowrap", {
                         ["text-primary-foreground"]: pathname === item.href,
+                        ["hidden"]: !sideNavigationOpenState,
                       })}
                     >
                       {item.label}

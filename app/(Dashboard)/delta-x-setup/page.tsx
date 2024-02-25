@@ -209,32 +209,28 @@ export default function DeltaXSetup() {
     <div className="flex flex-col gap-20 py-5">
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
-        <div className="flex flex-wrap box-border gap-3">
-          <div className="flex-grow basis-1/3">
-            <SectorialDifference />
-          </div>
-          <div className="flex-grow basis-1/3">
-            <FiveMinuteMomemtum />
-          </div>
+        <div className="grid lg:grid-cols-2 box-border gap-3">
+          <SectorialDifference />
+          <FiveMinuteMomemtum />
         </div>
       </div>
 
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border gap-3">
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <DownsideIntraday />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <UpsideIntraday />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <UpdiseSwing />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <DownsideSwing />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <VolumeContraction />
           </div>
         </div>

@@ -165,24 +165,22 @@ export default function SwingSection() {
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border">
-          <div className="flex-grow">
-            <HeavyWeightIndex />
-          </div>
+          <HeavyWeightIndex />
         </div>
       </div>
       <div className="flex flex-col gap-4">
         <ThumbHeading heading="Heading" />
         <div className="flex flex-wrap box-border gap-3">
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <ShortTermSwingBuy />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <ShortTermSwingSell />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <LongTermSwingBuy />
           </div>
-          <div className="flex-grow basis-1/3">
+          <div className="flex-grow md:basis-1/3 basis-full max-w-full">
             <LongTermSwingSell />
           </div>
         </div>

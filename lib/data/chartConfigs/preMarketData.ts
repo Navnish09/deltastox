@@ -22,7 +22,7 @@ export const preMarketDataChartConfig: EChartsOption = {
   },
   yAxis: {
     type: "category",
-    
+
     axisLabel: {
       interval: 1,
       fontSize: 10,

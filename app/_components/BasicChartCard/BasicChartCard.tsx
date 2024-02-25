@@ -1,11 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { DatasetComponentOption } from "echarts/components";
 import type { EChartsOption } from "echarts/types/dist/shared";
-import { Input } from "@/components/ui/input";
-import { DataTable } from "@/components/ui/data-table";
-import { Search } from "@/app/_icons";
 import EChart from "@/components/ui/chart";
 import { LoadingSpinner } from "@/components/ui/loader";
 
@@ -24,21 +21,27 @@ export const BasicChartCard = <TData, TValue>({
   height = 500,
   loading,
 }: Props<TData, TValue>) => {
+  const parentRef = React.useRef<HTMLDivElement>(null);
+
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col flex-grow w-full max-w-full overflow-hidden">
       <Card className="relative z-10" gradient="primary">
         <CardHeader>
-          <h5 className="w-4/12">{heading}</h5>
+          <h5 className="w-4/12 whitespace-nowrap">{heading}</h5>
         </CardHeader>
 
-        <CardContent>
+        <CardContent ref={parentRef}>
           <div style={{ height }}>
             {loading ? (
               <div className="flex justify-center items-center h-full w-full">
                 <LoadingSpinner />
               </div>
             ) : (
-              <EChart option={options} dataset={dataset} />
+              <EChart
+                option={options}
+                dataset={dataset}
+                parentRef={parentRef.current || window}
+              />
             )}
           </div>
         </CardContent>

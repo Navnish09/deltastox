@@ -44,7 +44,7 @@ export const Login = ({}: Props) => {
   let previousEmail =
     typeof window !== "undefined"
       ? localStorage.getItem(REMEMBER_ME_KEY)
-      : null;
+      : "";
 
   const { toast } = useToast();
   const router = useRouter();
@@ -56,7 +56,7 @@ export const Login = ({}: Props) => {
     defaultValues: {
       email: previousEmail || "",
       password: "",
-      rememberMe: !!previousEmail,
+      rememberMe: false,
     },
     mode: "onChange",
     reValidateMode: "onChange",

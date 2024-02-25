@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 import "../globals.css";
 import { AuthProvider } from "../_globals/context/AuthContext";
+import { NavigationProvider } from "../_globals/context/NavigationContext";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -24,13 +25,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, "dark bg-background")}>
         <AuthProvider>
-          <div className={"relative h-full flex"}>
-            <SideNavigation />
-            <div className={"flex-grow overflow-auto"}>
-              <TopNavigation />
-              <main className="px-4 py-2 isolate">{children}</main>
+          <NavigationProvider>
+            <div className={"relative h-full flex"}>
+              <SideNavigation />
+              <div className={"flex-grow overflow-auto isolate"}>
+                <TopNavigation />
+                <main className="px-4 py-2 isolate">{children}</main>
+              </div>
             </div>
-          </div>
+          </NavigationProvider>
         </AuthProvider>
         <Toaster />
       </body>
