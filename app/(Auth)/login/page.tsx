@@ -7,7 +7,7 @@ const LoginPage = () => {
     <div className={"flex justify-center relative w-full h-full items-center"}>
       <div
         className={
-          "flex items-start basis-4/12 self-stretch relative flex-col justify-center"
+          "flex items-start md:basis-3/12 self-stretch relative flex-col justify-center"
         }
       >
         <Login />

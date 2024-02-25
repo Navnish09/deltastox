@@ -190,7 +190,7 @@ export const Login = ({}: Props) => {
                   />
                 </div>
 
-                <div className="flex w-full justify-between items-center">
+                <div className="flex w-full justify-between items-center gap-8">
                   <FormField
                     control={form.control}
                     name="rememberMe"
