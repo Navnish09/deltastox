@@ -12,7 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { removeToken } from "@/services/authServices";
+import { logout, removeToken } from "@/services/authServices";
 import { useUser } from "../../context/AuthContext";
 import { Menu, User } from "lucide-react";
 import { useNavigationContext } from "../../context/NavigationContext";
@@ -28,7 +28,8 @@ export const TopNavigation = () => {
     return item.href === pathname;
   });
 
-  const onLogout = () => {
+  const onLogout = async () => {
+    await logout();
     removeToken();
     router.push("/login");
   };
@@ -54,7 +55,7 @@ export const TopNavigation = () => {
           <PopoverTrigger>
             <div className="flex items-center gap-2">
               <span className="text-sm">{user?.name}</span>
-              {!isUserReady && (
+              {isUserReady && (
                 <>
                   <Avatar>
                     <AvatarImage src={user?.profilePic} color="#FFBC99" />

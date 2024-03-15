@@ -1,10 +1,11 @@
 {
   "auth": {
     "login": "/deltastox/auth/login",
+    "logout": "/deltastox/auth/logout",
     "createUser": "/deltastox/auth/create-user",
-    "getUserDetails" : "/deltastox/auth/getUserDetails",
-    "updatePasswordAndMobile" : "/deltastox/auth/updateMobileAndPassword",
-    "uploadLogo" : "/deltastox/auth/postImage"
+    "getUserDetails": "/deltastox/auth/getUserDetails",
+    "updatePasswordAndMobile": "/deltastox/auth/updateMobileAndPassword",
+    "uploadLogo": "/deltastox/auth/postImage"
   },
   "oiAnalysis": {
     "symbolExpiryList": "/deltastox/OiAnalysis/getSymbolExpiryList",

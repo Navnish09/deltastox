@@ -15,6 +15,8 @@ export const removeToken = () => {
 export const login = (data: { email: string; password: string }) =>
   apiService.post(auth.login, data);
 
+export const logout = () => apiService.post(auth.logout);
+
 export const signUp = (data: {
   name: string;
   email: string;
