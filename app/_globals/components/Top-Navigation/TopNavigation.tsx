@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { Menu, User } from "lucide-react";
+
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 import navigations from "@/lib/data/navigations.json";
 import {
   Popover,
@@ -14,7 +15,6 @@ import {
 } from "@/components/ui/popover";
 import { logout, removeToken } from "@/services/authServices";
 import { useUser } from "../../context/AuthContext";
-import { Menu, User } from "lucide-react";
 import { useNavigationContext } from "../../context/NavigationContext";
 
 export const TopNavigation = () => {
