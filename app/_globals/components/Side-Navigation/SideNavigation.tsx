@@ -8,14 +8,13 @@ import { usePathname } from "next/navigation";
 import { SwingChart, BarChart, Home, LineChart, PieChart, Tool } from "@icons";
 import { cn } from "@/lib/utils";
 
-import navigationData from "@/lib/data/navigations.json";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { X } from "lucide-react";
+import { MessageSquareIcon, MessageSquarePlus, User, X } from "lucide-react";
 import { useNavigationContext } from "../../context/NavigationContext";
 
 const IconList = {
@@ -25,9 +24,23 @@ const IconList = {
   Power: <LineChart height={24} width={24} />,
   Sector: <PieChart height={24} width={24} />,
   Swing: <SwingChart height={24} width={24} />,
+  User: <User height={24} width={24} />,
+  Message: <MessageSquarePlus height={24} width={24} />,
 };
 
-export const SideNavigation = () => {
+export type NavigationData = {
+  items: {
+    label: string;
+    href: string;
+    icon: string;
+  }[];
+};
+
+export type Props = {
+  navigationMenus: NavigationData;
+};
+
+export const SideNavigation = ({ navigationMenus }: Props) => {
   const { sideNavigationOpenState, setSideNavigationOpenState } =
     useNavigationContext();
 
@@ -38,7 +51,7 @@ export const SideNavigation = () => {
       className={cn(
         "bg-darked-background md:static h-full md:max-w-[250px] transition-all duration-200 flex justify-center py-5 px-5 top-0 absolute z-[1] w-full ",
         {
-          ["md:max-w-[90px] overflow-hidden -translate-x-full md:-translate-x-0"]:
+          ["md:max-w-[90px] md:min-w-[90px] overflow-hidden -translate-x-full md:-translate-x-0"]:
             !sideNavigationOpenState,
         }
       )}
@@ -67,7 +80,7 @@ export const SideNavigation = () => {
           className="w-full items-start overflow-hidden"
         >
           <NavigationMenuList className="flex flex-col gap-2 w-full items-start">
-            {navigationData.items.map((item) => (
+            {navigationMenus.items.map((item) => (
               <NavigationMenuItem
                 key={item.label}
                 className={cn("w-full !m-0", {

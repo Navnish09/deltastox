@@ -42,9 +42,7 @@ type Props = {};
 
 export const Login = ({}: Props) => {
   let previousEmail =
-    typeof window !== "undefined"
-      ? localStorage.getItem(REMEMBER_ME_KEY)
-      : "";
+    typeof window !== "undefined" ? localStorage.getItem(REMEMBER_ME_KEY) : "";
 
   const { toast } = useToast();
   const router = useRouter();
@@ -76,6 +74,7 @@ export const Login = ({}: Props) => {
             setToken(res.data.jwtToken);
             router.push("/");
           } else {
+            resolve("");
             toast({
               title: "Invalid credentials",
               description: "Please check your email and password",
@@ -84,9 +83,15 @@ export const Login = ({}: Props) => {
           }
         })
         .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
+          switch (err.status) {
+            case 400:
+              toast({
+                title: "Duplicate Login",
+                description: err.data.message,
+                variant: "destructive",
+              });
+              break;
+          }
           resolve("");
         });
     });

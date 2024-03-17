@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "label": "Dashboard",
+      "href": "/",
+      "icon": "Dashboard"
+    },
+    {
+      "label": "Market Map",
+      "href": "/market-map",
+      "icon": "Market"
+    },
+    {
+      "label": "Delta-X Setup",
+      "href": "/delta-x-setup",
+      "icon": "Delta"
+    },
+    {
+      "label": "Power House",
+      "href": "/power-house",
+      "icon": "Power"
+    },
+    {
+      "label": "Sector Difference",
+      "href": "/sector-difference",
+      "icon": "Sector"
+    },
+    {
+      "label": "Swing Section",
+      "href": "/swing-section",
+      "icon": "Swing"
+    }
+  ]
+}

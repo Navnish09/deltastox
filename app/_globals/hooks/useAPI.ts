@@ -14,6 +14,7 @@ export const useAPI = <
   polling = false,
   onResloved,
   enable = true,
+  interval = POLLING_INTERVAL,
 }: {
   requestHandler: R;
   params?: Parameters<R>[number];
@@ -21,6 +22,7 @@ export const useAPI = <
   polling?: boolean;
   onResloved?: (data: dataT) => void;
   enable?: boolean;
+  interval?: number;
 }) => {
   const [data, setData] = useState<dataT>([] as any[] | {} as any);
   const [error, setError] = useState<any>(null);
@@ -38,7 +40,7 @@ export const useAPI = <
   const startPolling = () => {
     clearPolling();
 
-    intervalRef.current = setTimeout(fetchData, POLLING_INTERVAL);
+    intervalRef.current = setTimeout(fetchData, interval);
   };
 
   const fetchData = async (): Promise<dataT> => {

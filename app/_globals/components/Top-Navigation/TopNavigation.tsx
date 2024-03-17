@@ -1,34 +1,40 @@
 "use client";
 import React from "react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { Menu, User } from "lucide-react";
+
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 import navigations from "@/lib/data/navigations.json";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { removeToken } from "@/services/authServices";
+import { logout, removeToken } from "@/services/authServices";
 import { useUser } from "../../context/AuthContext";
-import { Menu, User } from "lucide-react";
 import { useNavigationContext } from "../../context/NavigationContext";
+import { NavigationData } from "../Side-Navigation/SideNavigation";
 
-export const TopNavigation = () => {
+type Props = {
+  navigationData: NavigationData;
+};
+
+export const TopNavigation = ({ navigationData }: Props) => {
   const [open, setOpen] = React.useState(false);
   const { setSideNavigationOpenState } = useNavigationContext();
   const { user, isUserReady } = useUser();
   const router = useRouter();
   const pathname = usePathname();
 
-  const pathHeading = navigations.items.find((item) => {
+  const pathHeading = navigationData.items?.find?.((item) => {
     return item.href === pathname;
   });
 
-  const onLogout = () => {
+  const onLogout = async () => {
+    await logout();
     removeToken();
     router.push("/login");
   };
@@ -54,7 +60,7 @@ export const TopNavigation = () => {
           <PopoverTrigger>
             <div className="flex items-center gap-2">
               <span className="text-sm">{user?.name}</span>
-              {!isUserReady && (
+              {isUserReady && (
                 <>
                   <Avatar>
                     <AvatarImage src={user?.profilePic} color="#FFBC99" />

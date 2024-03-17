@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "label": "Post Message",
+      "href": "/admin",
+      "icon": "Message"
+    },
+    {
+      "label": "Manage Users",
+      "href": "/manage-users",
+      "icon": "User"
+    }
+  ]
+}
