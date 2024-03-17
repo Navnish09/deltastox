@@ -1,4 +1,9 @@
 {
+  "admin" : {
+    "getNotification": "/deltastox/home/getNotifications",
+    "postMessage" : "deltastox/admin/postMessages",
+    "manageSubscription": "/deltastox/admin/manageUserSubscription"
+  },
   "auth": {
     "login": "/deltastox/auth/login",
     "logout": "/deltastox/auth/logout",

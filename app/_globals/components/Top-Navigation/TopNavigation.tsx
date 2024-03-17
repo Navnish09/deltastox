@@ -16,15 +16,20 @@ import {
 import { logout, removeToken } from "@/services/authServices";
 import { useUser } from "../../context/AuthContext";
 import { useNavigationContext } from "../../context/NavigationContext";
+import { NavigationData } from "../Side-Navigation/SideNavigation";
 
-export const TopNavigation = () => {
+type Props = {
+  navigationData: NavigationData;
+};
+
+export const TopNavigation = ({ navigationData }: Props) => {
   const [open, setOpen] = React.useState(false);
   const { setSideNavigationOpenState } = useNavigationContext();
   const { user, isUserReady } = useUser();
   const router = useRouter();
   const pathname = usePathname();
 
-  const pathHeading = navigations.items.find((item) => {
+  const pathHeading = navigationData.items?.find?.((item) => {
     return item.href === pathname;
   });
 

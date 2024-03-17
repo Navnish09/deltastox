@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const AUTH_WHITE_LIST = ["/login", "/signup"];
+const ADMIN_LIST = ["/admin", "/manage-users"];
+
+const AUTH_WHITE_LIST = ["/login", "/signup", ...ADMIN_LIST];
 
 export default function (req: NextRequest) {
   const token = req.cookies.get("token");
@@ -9,6 +11,10 @@ export default function (req: NextRequest) {
   if (AUTH_WHITE_LIST.includes(pathname)) {
     // if user is logged in, redirect to home page
     if (token) {
+      if (ADMIN_LIST.includes(pathname)) {
+        return NextResponse.next();
+      }
+
       return NextResponse.redirect(origin);
     } else {
       return NextResponse.next();
