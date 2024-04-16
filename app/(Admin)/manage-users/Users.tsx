@@ -12,9 +12,9 @@ import { useToast } from "@/components/ui/use-toast";
 import { USER_STATUS } from "@/app/_globals/constant";
 import { UserDetails, useUser } from "@/app/_globals/context/AuthContext";
 
-import { StatusTemplate } from "./templates/Status";
-import { UserActions } from "./templates/UserActions";
-import { UserRoles } from "./templates/UserRoles";
+import { StatusTemplate } from "./_templates/Status";
+import { UserActions } from "./_templates/UserActions";
+import { UserRoles } from "./_templates/UserRoles";
 
 export type UserRow = Pick<
   UserDetails,
