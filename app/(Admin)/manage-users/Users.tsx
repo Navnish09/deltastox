@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { Confirmation } from "@/app/_components/Confirmation";
 import { DataCard } from "@/app/_components/DataCard";
 import { useAPI } from "@/app/_globals/hooks/useAPI";
-import { DateTemplate } from "@lib/Templates";
+import { DateTemplate } from "@/lib/templates";
 import { createColumns } from "@lib/utils";
 import { createTemplates } from "@lib/utils/createTemplates";
 import { updateUserStatus } from "@/services/apiServices";
@@ -12,9 +12,9 @@ import { useToast } from "@/components/ui/use-toast";
 import { USER_STATUS } from "@/app/_globals/constant";
 import { UserDetails, useUser } from "@/app/_globals/context/AuthContext";
 
-import { StatusTemplate } from "./Templates/Status";
-import { UserActions } from "./Templates/UserActions";
-import { UserRoles } from "./Templates/UserRoles";
+import { StatusTemplate } from "./templates/Status";
+import { UserActions } from "./templates/UserActions";
+import { UserRoles } from "./templates/UserRoles";
 
 export type UserRow = Pick<
   UserDetails,

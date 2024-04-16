@@ -25,7 +25,7 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { format } from "date-fns";
 import { updateSubscription } from "@/services/apiServices";
 import { useToast } from "@/components/ui/use-toast";
-import { ActionProps } from "../Templates/UserActions";
+import { ActionProps } from "../templates/UserActions";
 
 type Props = ActionProps;
 

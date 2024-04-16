@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { updateUserPassword } from "@/services/apiServices";
 import { useToast } from "@/components/ui/use-toast";
-import { ActionProps } from "../Templates/UserActions";
+import { ActionProps } from "../templates/UserActions";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Show } from "@/app/_icons";

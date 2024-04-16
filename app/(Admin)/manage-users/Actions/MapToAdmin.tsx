@@ -3,7 +3,7 @@
 import { mapUserToAdmin } from "@/services/apiServices";
 import { useToast } from "@/components/ui/use-toast";
 import { ConfirmationContent } from "@/app/_components/Confirmation";
-import { ActionProps } from "../Templates/UserActions";
+import { ActionProps } from "../templates/UserActions";
 import { useState } from "react";
 
 type Props = ActionProps;
