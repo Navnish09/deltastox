@@ -1,4 +1,3 @@
-import { AccessorKeyColumnDef } from "@tanstack/react-table";
 
 export const trendingOIColumns = [
   {

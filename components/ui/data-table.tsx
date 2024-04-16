@@ -138,7 +138,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4 h-full">
-      <div className="rounded-md border h-full">
+      <div className="rounded-md border h-full overflow-hidden">
         <Table
           ref={heightRef}
           className={cn(

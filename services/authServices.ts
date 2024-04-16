@@ -1,6 +1,7 @@
-import { apiService } from "./axiosIntance";
-import { auth } from "../lib/data/apiUrls.json";
 import cookie from "@boiseitguru/cookie-cutter";
+
+import { apiService } from "./axiosIntance";
+import { auth, home } from "../lib/data/apiUrls.json";
 
 export const getToken = () => cookie.get("token");
 
@@ -15,7 +16,9 @@ export const removeToken = () => {
 export const login = (data: { email: string; password: string }) =>
   apiService.post(auth.login, data);
 
-export const logout = () => apiService.post(auth.logout);
+export const logout = () => {
+  return apiService.post(auth.logout);
+};
 
 export const signUp = (data: {
   name: string;
@@ -23,7 +26,9 @@ export const signUp = (data: {
   password: string;
 }) => apiService.post(auth.createUser, data);
 
-export const getUserDetails = () => apiService.post(auth.getUserDetails);
+export const getUserDetails = () => apiService.get(auth.getUserDetails);
+
+export const getUsers = () => apiService.get(home.getUsers);
 
 export const updateMobileAndPassword = (data: {
   mobile?: string;

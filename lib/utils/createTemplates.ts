@@ -10,9 +10,14 @@ export function createTemplates<
     header: string;
   },
   U extends {
-    [key in T["accessorKey"]]?: TemplateFunction<{
-      [key in T["accessorKey"]]: any;
-    }>;
+    [key in T["accessorKey"]]?: TemplateFunction<
+      Omit<
+        {
+          [key in T["accessorKey"]]: any;
+        },
+        "actions"
+      >
+    >;
   }
 >(columns: Readonly<T[]>, templateFunctions: U) {
   return templateFunctions;

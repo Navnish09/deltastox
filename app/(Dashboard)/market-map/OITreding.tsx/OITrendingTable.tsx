@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { TrendingDown, TrendingUp } from "lucide-react";
 
 import { DataTable } from "@/components/ui/data-table";
-import { NegativePositiveText } from "@/lib/templates";
+import { NegativePositiveText } from "@/lib/Templates";
 import { cn } from "@/lib/utils";
 import { FilterParams } from "./OITrending";
 import { createTemplates } from "@/lib/utils/createTemplates";

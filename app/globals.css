@@ -44,6 +44,13 @@ input[type="number"]::-webkit-outer-spin-button {
   display: none;
 }
 
+.tox-notifications-container {
+  display: none !important;
+  width: 0;
+  height: 0;
+  visibility: hidden
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -155,6 +162,15 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 @layer components {
+  .tables-with-border table {
+    @apply table-auto border;
+  }
+
+  .tables-with-border th,
+  .tables-with-border td {
+    @apply border p-2 border-muted-foreground;
+  }
+
   .auth-screen-bg {
     background: radial-gradient(
         25.45% 30.45% at 70% 90.16%,

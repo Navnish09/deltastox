@@ -108,7 +108,7 @@ const Messages = () => {
                     key={message.notificationId}
                     className="p-4 bg-secondary border-l-4 border-primary overflow-auto"
                   >
-                    <div className="flex justify-between items-center">
+                    <div>
                       <div className="text-sm">{parse(message.message)}</div>
                     </div>
                   </div>
@@ -155,7 +155,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="md:px-10 pb-3 flex-grow h-full overflow-auto">
+      <div className="md:px-10 pb-3 flex-grow h-full overflow-auto tables-with-border">
         <Messages />
       </div>
     </div>

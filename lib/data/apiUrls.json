@@ -1,8 +1,10 @@
 {
-  "admin" : {
+  "admin": {
     "getNotification": "/deltastox/home/getNotifications",
-    "postMessage" : "deltastox/admin/postMessages",
-    "manageSubscription": "/deltastox/admin/manageUserSubscription"
+    "postMessage": "deltastox/admin/postMessages",
+    "updateSubscription": "/deltastox/admin/manageUserSubscription",
+    "updateStatus": "/deltastox/admin/updateUserStatus",
+    "mapToAdmin": "/deltastox/admin/mapUsertoAdmin"
   },
   "auth": {
     "login": "/deltastox/auth/login",
@@ -11,6 +13,9 @@
     "getUserDetails": "/deltastox/auth/getUserDetails",
     "updatePasswordAndMobile": "/deltastox/auth/updateMobileAndPassword",
     "uploadLogo": "/deltastox/auth/postImage"
+  },
+  "home": {
+    "getUsers": "/deltastox/home/user"
   },
   "oiAnalysis": {
     "symbolExpiryList": "/deltastox/OiAnalysis/getSymbolExpiryList",

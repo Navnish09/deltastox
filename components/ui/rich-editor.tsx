@@ -17,13 +17,18 @@ export const RichEditor = ({ onChange, value }: Props) => {
         onEditorChange={onChange}
         init={{
           plugins:
-            "autoresize anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes autocorrect typography inlinecss",
+            "autoresize anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange formatpainter pageembed linkchecker permanentpen powerpaste advtable advcode editimage advtemplate mentions tableofcontents footnotes autocorrect typography inlinecss textcolor",
           toolbar:
-            "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
-          min_height: 400,
+            "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | typography | forecolor backcolor | align lineheight | checklist numlist bullist indent outdent | emoticons charmap",
+          min_height: 500,
           menubar: false,
           skin: "oxide-dark",
-          content_css: "dark",
+          skin_url: "/skins/ui/CUSTOM",
+          content_style: "body { color : #fff }",
+          content_css: "CUSTOM",
+          table_default_attributes: {
+            border: "1",
+          },
         }}
         value={value}
       />

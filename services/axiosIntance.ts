@@ -1,7 +1,7 @@
 import axios from "axios";
-import { getToken, removeToken } from "./authServices";
-import { Router } from "next/router";
-// import { redirect } from "next/navigation";
+import { getToken, logout, removeToken } from "./authServices";
+import { toast } from "@/components/ui/use-toast";
+import { redirect } from "next/navigation";
 
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -21,7 +21,19 @@ instance.interceptors.response.use(
   ({ response }) => {
     if (response?.status === 401) {
       removeToken();
-      window.location.href = "/login";
+      const message =
+        response?.data?.message ||
+        response?.data ||
+        "Session expired, Please login again";
+
+      toast({
+        title: message,
+        variant: "destructive",
+      });
+
+      if (!window.location.pathname.includes("/login")) {
+        window.location.href = "/login";
+      }
     }
     return Promise.reject(response);
   }

@@ -1,5 +1,6 @@
-import { AxiosResponse } from "axios";
 import { useEffect, useRef, useState } from "react";
+
+import { AxiosResponse } from "axios";
 import { POLLING_INTERVAL } from "../constant";
 
 export const useAPI = <
@@ -28,10 +29,16 @@ export const useAPI = <
   const [error, setError] = useState<any>(null);
   const [isFetching, setFetching] = useState<boolean>(false);
 
-  // This is for showing the loading state. This will be true only when the data is being refetched without polling
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const [refetch, setRefetch] = useState<boolean>(false);
+
+  // This is for showing the loading state. This will only be true when the data is being refetched without polling
+  const [isLoading, setLoading] = useState<boolean>(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+
+  const refresh = () => {
+    setRefetch((prev) => !prev);
+  };
 
   const clearPolling = () => {
     intervalRef.current && clearTimeout(intervalRef.current);
@@ -57,24 +64,17 @@ export const useAPI = <
         .then((res) => {
           const newData: dataT = returnData ? returnData(res) : res.data.data;
           setData(newData);
-
-          // If polling is enabled and the tab is visible, then start the interval again
-          if (polling && document.visibilityState === "visible") {
-            startPolling();
-          }
-
           resolve(newData);
         })
         .catch((err) => {
-          // Retry if the request throws an error
-          if (polling && document.visibilityState === "visible") {
-            startPolling();
-          }
-
           setError(err);
           reject(err);
         })
         .finally(() => {
+          // If polling is enabled and the tab is visible, then start the interval again
+          if (polling && document.visibilityState === "visible") {
+            startPolling();
+          }
           setFetching(false);
         });
     });
@@ -97,7 +97,7 @@ export const useAPI = <
     return () => {
       intervalRef.current && clearTimeout(intervalRef.current);
     };
-  }, [params, enable, polling]);
+  }, [params, enable, polling, refetch]);
 
   useEffect(() => {
     if (!enable) {
@@ -124,5 +124,5 @@ export const useAPI = <
     };
   }, [enable, polling]);
 
-  return { data, error, isLoading, isFetching };
+  return { data, error, isLoading, isFetching, refresh };
 };

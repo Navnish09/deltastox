@@ -6,29 +6,47 @@ import {
   SetStateAction,
   createContext,
   useContext,
+  useLayoutEffect,
   useMemo,
   useState,
 } from "react";
+import { notFound, useRouter } from "next/navigation";
+
+import { getUserDetails, logout, removeToken } from "@/services/authServices";
+import { useToast } from "@/components/ui/use-toast";
+
 import { useAPI } from "../hooks/useAPI";
-import { getUserDetails } from "@/services/authServices";
+import { USER_ROLES, USER_STATUS } from "../constant";
+import { LoadingSpinner } from "@/components/ui/loader";
+
+type Role = {
+  id: number;
+  name: `${USER_ROLES}`;
+};
+
+export type Authority = {
+  authority: `${USER_ROLES}`;
+};
 
 type AuthContextType = {
   user: {
     userId: string;
-    name?: string;
+    name: string | null;
     email: string;
-    password: "$2a$10$mkC.NmL42KTnoPBhk7zOJOuaN4lmo1Spy3F7N0M0CgNqH6ddLgYLi";
-    mobile?: string;
+    mobile: string | null;
+    status: `${USER_STATUS}`;
+    roles: Role[];
+
     doj: string;
     profilePic?: string;
-    location1?: string;
-    location2?: string;
-    location3?: string;
+    location1: string | null;
+    location2: string | null;
+    location3: string | null;
     subscritionStartDate: string;
-    subscritionEndDate?: string;
+    subscritionEndDate: string | null;
     enabled: boolean;
     username: string;
-    authorities?: string;
+    authorities: Authority[];
     accountNonExpired: boolean;
     accountNonLocked: boolean;
     credentialsNonExpired: boolean;
@@ -46,15 +64,22 @@ const authContext = createContext<AuthContextType>({
 export const useUser = () => {
   const user = useContext(authContext);
   if (!user) {
-    throw new Error("useUser must be used within a AuthProvider");
+    throw new Error("User must be used within a AuthProvider");
   }
 
   return user;
 };
 
-export const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [refresh, refetchUser] = useState(false);
+export const AuthProvider = ({
+  children,
+  allowedRoles,
+}: PropsWithChildren<{
+  allowedRoles?: string[];
+}>) => {
+  const router = useRouter();
+  const { toast } = useToast();
 
+  const [refresh, refetchUser] = useState(false);
   const params = useMemo(() => ({ refresh }), [refresh]);
 
   const { data, isLoading } = useAPI<
@@ -65,6 +90,36 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     params: params as any,
     returnData: (data) => data.data,
   });
+
+  useLayoutEffect(() => {
+    if (data?.status === "N") {
+      toast({
+        title: "Account is disabled",
+        description: "Please contact the support team",
+        variant: "destructive",
+      });
+
+      logout().finally(() => {
+        removeToken();
+        router.replace("/login");
+      });
+    }
+  }, [data]);
+
+  if (isLoading) {
+    return null
+  }
+
+  // Check if the user has the required roles
+  if (allowedRoles?.length && data.authorities?.length) {
+    const hasRole = data.authorities.some(({ authority }) =>
+      allowedRoles.includes(authority)
+    );
+
+    if (!hasRole) {
+      return notFound();
+    }
+  }
 
   return (
     <authContext.Provider

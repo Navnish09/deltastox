@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { CellContext } from "@tanstack/react-table";
 
 import { DataCard } from "@/app/_components/DataCard";
@@ -10,7 +8,6 @@ import {
   createBasicDataset,
   createColumns,
   createNegPosDataset,
-  framesInterval,
 } from "@/lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
 import {

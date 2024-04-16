@@ -16,11 +16,9 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} dark auth-screen-bg`}>
-        {children}
-        <Toaster />
-      </body>
-    </html>
+    <div className={`auth-screen-bg h-full w-full`}>
+      {children}
+      <Toaster />
+    </div>
   );
 }

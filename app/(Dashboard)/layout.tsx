@@ -22,29 +22,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={cn(inter.className, "dark bg-background")}>
-        <AuthProvider>
-          <NavigationProvider>
-            <div className={"relative h-full flex"}>
-              <SideNavigation navigationMenus={userNavigationData} />
-              <div
-                className={
-                  "flex-grow isolate h-full flex flex-col overflow-hidden"
-                }
-              >
-                <TopNavigation navigationData={userNavigationData} />
-                <main className="isolate flex-grow h-full overflow-hidden">
-                  <div className="py-2 px-4 overflow-auto h-full">
-                    {children}
-                  </div>
-                </main>
-              </div>
+    <>
+      <AuthProvider>
+        <NavigationProvider>
+          <div className={"relative h-full flex"}>
+            <SideNavigation navigationMenus={userNavigationData} />
+            <div
+              className={
+                "flex-grow isolate h-full flex flex-col overflow-hidden"
+              }
+            >
+              <TopNavigation navigationData={userNavigationData} />
+              <main className="isolate flex-grow h-full overflow-hidden">
+                <div className="py-2 px-4 overflow-auto h-full">{children}</div>
+              </main>
             </div>
-          </NavigationProvider>
-        </AuthProvider>
-        <Toaster />
-      </body>
-    </html>
+          </div>
+        </NavigationProvider>
+      </AuthProvider>
+      <Toaster />
+    </>
   );
 }

@@ -1,15 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { CellContext } from "@tanstack/react-table";
 
 import { DataCard } from "@/app/_components/DataCard";
-import {
-  cn,
-  createColumns,
-  createNegPosDataset,
-  framesInterval,
-} from "@/lib/utils";
+import { cn, createColumns, createNegPosDataset } from "@/lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
 import {
   bankNifty,
