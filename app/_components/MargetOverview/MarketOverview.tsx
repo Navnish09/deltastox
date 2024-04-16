@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 
-import { marketOverviewConfigs } from "@/lib/data/marketOverviewConfigs";
+import { marketOverviewConfigs } from "@lib/data/marketOverviewConfigs";
 
 type Props = {};
 

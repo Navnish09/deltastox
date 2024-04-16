@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { SwingChart, BarChart, Home, LineChart, PieChart, Tool } from "@icons";
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 
 import {
   NavigationMenu,

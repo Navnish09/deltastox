@@ -8,7 +8,7 @@ import {
   createBasicDataset,
   createColumns,
   createNegPosDataset,
-} from "@/lib/utils";
+} from "@lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
 import {
   fiveMinMomemtum,
@@ -20,8 +20,8 @@ import {
   volumeContraction,
 } from "@/services/apiServices";
 import { BasicChartCard } from "@/app/_components/BasicChartCard";
-import { preMarketDataChartConfig } from "@/lib/data/chartConfigs/preMarketData";
-import { fiveMinuteMomentumChartConfig } from "@/lib/data/chartConfigs";
+import { preMarketDataChartConfig } from "@lib/data/chartConfigs/preMarketData";
+import { fiveMinuteMomentumChartConfig } from "@lib/data/chartConfigs";
 import { useAPI } from "@/app/_globals/hooks/useAPI";
 
 type dataType = {

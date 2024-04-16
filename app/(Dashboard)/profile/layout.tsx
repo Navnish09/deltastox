@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
 import { Card, CardContent } from "@/components/ui/card";
 import {

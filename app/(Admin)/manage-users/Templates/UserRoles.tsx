@@ -1,6 +1,6 @@
 import { Role } from "@/app/_globals/context/AuthContext";
 import { Badge } from "@/components/ui/badge";
-import { capitalize } from "@/lib/utils";
+import { capitalize } from "@lib/utils";
 
 type Props = {
   roles: Role[];

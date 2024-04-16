@@ -7,7 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import navigations from "@/lib/data/navigations.json";
+import navigations from "@lib/data/navigations.json";
 import {
   Popover,
   PopoverContent,
@@ -17,7 +17,7 @@ import { logout, removeToken } from "@/services/authServices";
 import { useUser } from "../../context/AuthContext";
 import { useNavigationContext } from "../../context/NavigationContext";
 import { NavigationData } from "../Side-Navigation/SideNavigation";
-import { isAdmin } from "@/lib/utils";
+import { isAdmin } from "@lib/utils";
 import { Button } from "@/components/ui/button";
 
 type Props = {

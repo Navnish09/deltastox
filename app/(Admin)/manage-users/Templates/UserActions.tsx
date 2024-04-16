@@ -15,7 +15,7 @@ import { UserSubscription } from "../Actions/Subscription";
 import { MapToAdmin } from "../Actions/MapToAdmin";
 import { Contact, LockKeyhole, UserRoundCog } from "lucide-react";
 import { ChangePassword } from "../Actions/ChangePassword";
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 
 export type ModalActions = {
   toggleModal: Dispatch<SetStateAction<boolean>>;

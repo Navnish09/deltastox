@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 
-import { heatmapConfig } from "@/lib/data/HeatmapConfigs";
+import { heatmapConfig } from "@lib/data/HeatmapConfigs";
 
 type Props = {};
 

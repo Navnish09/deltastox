@@ -19,7 +19,7 @@ import {
 
 import { FilterParams } from "./OITrending";
 import { DEFAULT_SYMBOL } from "./constants";
-import { findNearestNumber } from "@/lib/utils/findNearestNumber";
+import { findNearestNumber } from "@lib/utils/findNearestNumber";
 import {
   Popover,
   PopoverContent,
@@ -35,7 +35,7 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import { CheckIcon, ChevronDown } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 
 type Symbol = {
   symbol_name: string;

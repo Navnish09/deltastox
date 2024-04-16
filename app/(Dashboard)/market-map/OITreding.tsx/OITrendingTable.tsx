@@ -4,14 +4,14 @@ import { useMemo } from "react";
 import { TrendingDown, TrendingUp } from "lucide-react";
 
 import { DataTable } from "@/components/ui/data-table";
-import { NegativePositiveText } from "@/lib/Templates";
-import { cn } from "@/lib/utils";
+import { NegativePositiveText } from "@lib/Templates";
+import { cn } from "@lib/utils";
 import { FilterParams } from "./OITrending";
-import { createTemplates } from "@/lib/utils/createTemplates";
+import { createTemplates } from "@lib/utils/createTemplates";
 import { useAPI } from "@/app/_globals/hooks/useAPI";
 import { trendingOIData } from "@/services/apiServices/oiAnalysis";
 import { TableHeightWrapper } from "@/components/ui/table";
-import { trendingOIColumns } from "@/lib/data/columns";
+import { trendingOIColumns } from "@lib/data/columns";
 
 const NegPosTemplate = ({ value }: { value: number }) => {
   const isNegative = value < 0;

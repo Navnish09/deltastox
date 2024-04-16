@@ -3,10 +3,10 @@
 import { TrendingDown, TrendingUp } from "lucide-react";
 
 import { DataTable } from "@/components/ui/data-table";
-import { NegativePositiveText } from "@/lib/Templates";
-import { cn, createColumns } from "@/lib/utils";
+import { NegativePositiveText } from "@lib/Templates";
+import { cn, createColumns } from "@lib/utils";
 import { OptionChainData, OptionChainFilters } from "./OptionChain";
-import { createTemplates } from "@/lib/utils/createTemplates";
+import { createTemplates } from "@lib/utils/createTemplates";
 import { Badge } from "@/components/ui/badge";
 import { TableHeightWrapper } from "@/components/ui/table";
 

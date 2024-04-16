@@ -1,7 +1,7 @@
 "use client";
 
 import { DataTable } from "@/components/ui/data-table";
-import { createColumns } from "@/lib/utils";
+import { createColumns } from "@lib/utils";
 import { PCRFilters, OIData } from "./PutCallRatio";
 
 export const PutCallRatioTable = ({

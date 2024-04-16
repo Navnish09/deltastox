@@ -3,7 +3,7 @@
 import { CellContext } from "@tanstack/react-table";
 
 import { DataCard } from "@/app/_components/DataCard";
-import { cn, createColumns, createNegPosDataset } from "@/lib/utils";
+import { cn, createColumns, createNegPosDataset } from "@lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
 import {
   bankNifty,
@@ -22,7 +22,7 @@ import {
   sectorialDifference,
 } from "@/services/apiServices";
 import { BasicChartCard } from "@/app/_components/BasicChartCard";
-import { sectorDifferenceChartConfig } from "@/lib/data/chartConfigs";
+import { sectorDifferenceChartConfig } from "@lib/data/chartConfigs";
 import { useAPI } from "@/app/_globals/hooks/useAPI";
 
 type dataType = {

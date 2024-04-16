@@ -2,7 +2,7 @@
 
 import { CellContext } from "@tanstack/react-table";
 import { DataCard } from "@/app/_components/DataCard";
-import { cn, createColumns, createNegPosDataset } from "@/lib/utils";
+import { cn, createColumns, createNegPosDataset } from "@lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
 import {
   heavyWeightIndex,
@@ -12,7 +12,7 @@ import {
   shortTermSwingSell,
 } from "@/services/apiServices";
 import { BasicChartCard } from "@/app/_components/BasicChartCard";
-import { heavyWeightIndexChartConfig } from "@/lib/data/chartConfigs/heavyWeightIndex";
+import { heavyWeightIndexChartConfig } from "@lib/data/chartConfigs/heavyWeightIndex";
 import { useAPI } from "@/app/_globals/hooks/useAPI";
 
 type dataType = {

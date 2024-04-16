@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { tickertapeConfig } from "@/lib/data/TickertapeConfigs";
+import { tickertapeConfig } from "@lib/data/TickertapeConfigs";
 
 type Props = {};
 

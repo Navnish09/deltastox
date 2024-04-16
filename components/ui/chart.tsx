@@ -13,7 +13,7 @@ import { SVGRenderer } from "echarts/renderers";
 import * as echarts from "echarts/core";
 import type { EChartsOption } from "echarts/types/dist/shared";
 import { LineChart, BarChart, PieChart } from "echarts/charts";
-import customTheme from "@/lib/data/EchartTheme.json";
+import customTheme from "@lib/data/EchartTheme.json";
 
 export interface ChartProps {
   option: EChartsOption;

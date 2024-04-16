@@ -31,7 +31,7 @@ import {
   Table,
 } from "./table";
 import { Skeleton } from "./skeleton";
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {

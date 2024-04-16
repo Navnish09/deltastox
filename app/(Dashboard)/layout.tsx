@@ -2,9 +2,9 @@ import { Inter } from "next/font/google";
 
 import { SideNavigation } from "@globals/components/Side-Navigation";
 import { TopNavigation } from "@globals/components/Top-Navigation";
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 import { Toaster } from "@/components/ui/toaster";
-import userNavigationData from "@/lib/data/navigation/userNavigation.json";
+import userNavigationData from "@lib/data/navigation/userNavigation.json";
 import { AuthProvider } from "../_globals/context/AuthContext";
 import { NavigationProvider } from "../_globals/context/NavigationContext";
 import "../globals.css";

@@ -3,12 +3,12 @@ import { Inter } from "next/font/google";
 import { SideNavigation } from "@globals/components/Side-Navigation";
 import { TopNavigation } from "@globals/components/Top-Navigation";
 import { Toaster } from "@/components/ui/toaster";
-import adminNavigationData from "@/lib/data/navigation/adminNavigation.json";
+import adminNavigationData from "@lib/data/navigation/adminNavigation.json";
 
 import { AuthProvider } from "@globals/context/AuthContext";
 import { NavigationProvider } from "@globals/context/NavigationContext";
 import { USER_ROLES } from "../_globals/constant";
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 
 import "../globals.css";
 

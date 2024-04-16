@@ -3,7 +3,7 @@
 import { AccessorKeyColumnDef, CellContext } from "@tanstack/react-table";
 
 import { DataCard } from "@/app/_components/DataCard";
-import { cn, createColumns } from "@/lib/utils";
+import { cn, createColumns } from "@lib/utils";
 import { ThumbHeading } from "@/app/_components/ThumbHeading";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
