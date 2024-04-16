@@ -1,15 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { isAdmin } from "@/lib/utils";
 import { useUser } from "@globals/context/AuthContext";
 
 import { useRouter } from "next/navigation";
+import "./globals.css";
 
 export default function NotFound(props: any) {
   const router = useRouter();
   const { user } = useUser();
-  const isUserAdmin = isAdmin(user?.authorities);
 
   return (
     <section className="flex items-center h-full p-16">
@@ -28,7 +27,7 @@ export default function NotFound(props: any) {
             rel="noopener noreferrer"
             variant={"default"}
             onClick={() => {
-              isUserAdmin ? router.replace("/admin") : router.replace("/");
+              router.replace("/");
             }}
           >
             Back to homepage

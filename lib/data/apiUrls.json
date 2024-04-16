@@ -4,7 +4,8 @@
     "postMessage": "deltastox/admin/postMessages",
     "updateSubscription": "/deltastox/admin/manageUserSubscription",
     "updateStatus": "/deltastox/admin/updateUserStatus",
-    "mapToAdmin": "/deltastox/admin/mapUsertoAdmin"
+    "mapToAdmin": "/deltastox/admin/mapUsertoAdmin",
+    "changePassword": "/deltastox/admin/changePasswordForUser"
   },
   "auth": {
     "login": "/deltastox/auth/login",

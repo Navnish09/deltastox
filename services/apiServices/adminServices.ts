@@ -25,6 +25,15 @@ export const updateSubscription = (params: {
   });
 };
 
+export const updateUserPassword = (params: {
+  email: string;
+  password: string;
+}) => {
+  return apiService.post(admin.changePassword, undefined, {
+    params,
+  });
+};
+
 export const updateUserStatus = (params: { email: string; status: string }) => {
   return apiService.post(admin.updateStatus, undefined, {
     params,

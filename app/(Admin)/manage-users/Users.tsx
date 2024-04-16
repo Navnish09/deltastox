@@ -10,22 +10,25 @@ import { updateUserStatus } from "@/services/apiServices";
 import { getUsers } from "@/services/authServices";
 import { useToast } from "@/components/ui/use-toast";
 import { USER_STATUS } from "@/app/_globals/constant";
+import { UserDetails, useUser } from "@/app/_globals/context/AuthContext";
 
 import { StatusTemplate } from "./Templates/Status";
 import { UserActions } from "./Templates/UserActions";
+import { UserRoles } from "./Templates/UserRoles";
 
-export type UserRow = {
-  name: string;
-  email: string;
-  roles: { id: number; name: string }[];
-  subscritionStartDate: string;
-  subscritionEndDate: string;
-  status: `${USER_STATUS}`;
-};
+export type UserRow = Pick<
+  UserDetails,
+  | "name"
+  | "email"
+  | "roles"
+  | "subscritionStartDate"
+  | "subscritionEndDate"
+  | "status"
+>;
 
 export const UsersTable = () => {
   const { toast } = useToast();
-
+  const { user } = useUser();
   const [statusModal, setStatusModal] = useState(false);
   const { data: tableData, refresh } = useAPI({
     requestHandler: getUsers,
@@ -33,6 +36,8 @@ export const UsersTable = () => {
   });
 
   const selectedUser = useRef<UserRow | null>(null);
+
+  const isCurrentUser = (email: string) => email === user.email;
 
   const columns = createColumns([
     ["name", "Name"],
@@ -45,26 +50,30 @@ export const UsersTable = () => {
   ] as const);
 
   const templates = createTemplates(columns, {
-    actions: (prop) => {
-      return <UserActions row={prop.row.original} refresh={refresh} />;
+    actions: ({ row: { original: rowData } }) => {
+      if (isCurrentUser(rowData.email)) return null;
+      return <UserActions row={rowData} refresh={refresh} />;
     },
-    subscritionStartDate: (prop) => {
-      return <DateTemplate date={prop.row.original.subscritionStartDate} />;
+    subscritionStartDate: ({ row: { original: rowData } }) => {
+      return <DateTemplate date={rowData.subscritionStartDate} />;
     },
-    subscritionEndDate: (prop) => {
-      return <DateTemplate date={prop.row.original.subscritionEndDate} />;
+    subscritionEndDate: ({ row: { original: rowData } }) => {
+      return <DateTemplate date={rowData.subscritionEndDate} />;
     },
-    roles: (prop) => {
-      const data: UserRow = prop.row.original;
-      return data.roles.map((role) => role.name).join(", ");
+    roles: ({ row: { original: rowData } }) => {
+      return <UserRoles roles={rowData.roles} />;
     },
-    status: (prop) => {
+    status: ({ row: { original: rowData } }) => {
+      // If the user is the logged in user, then the status should be always active
+      if (isCurrentUser(rowData.email)) {
+        return <StatusTemplate status={USER_STATUS.Y} />;
+      }
       return (
         <StatusTemplate
-          status={prop.row.original.status}
+          status={rowData.status}
           onClick={() => {
             setStatusModal(true);
-            selectedUser.current = prop.row.original;
+            selectedUser.current = rowData;
           }}
         />
       );
@@ -74,6 +83,7 @@ export const UsersTable = () => {
   const handleStatusConfirm = async () => {
     try {
       if (!selectedUser.current) return;
+
       await updateUserStatus({
         email: selectedUser.current.email,
         status:

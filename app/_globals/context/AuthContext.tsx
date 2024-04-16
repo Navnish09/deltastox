@@ -19,7 +19,7 @@ import { useAPI } from "../hooks/useAPI";
 import { USER_ROLES, USER_STATUS } from "../constant";
 import { LoadingSpinner } from "@/components/ui/loader";
 
-type Role = {
+export type Role = {
   id: number;
   name: `${USER_ROLES}`;
 };
@@ -28,29 +28,31 @@ export type Authority = {
   authority: `${USER_ROLES}`;
 };
 
-type AuthContextType = {
-  user: {
-    userId: string;
-    name: string | null;
-    email: string;
-    mobile: string | null;
-    status: `${USER_STATUS}`;
-    roles: Role[];
+export type UserDetails = {
+  userId: string;
+  name: string | null;
+  email: string;
+  mobile: string | null;
+  status: `${USER_STATUS}`;
+  roles: Role[];
 
-    doj: string;
-    profilePic?: string;
-    location1: string | null;
-    location2: string | null;
-    location3: string | null;
-    subscritionStartDate: string;
-    subscritionEndDate: string | null;
-    enabled: boolean;
-    username: string;
-    authorities: Authority[];
-    accountNonExpired: boolean;
-    accountNonLocked: boolean;
-    credentialsNonExpired: boolean;
-  };
+  doj: string;
+  profilePic?: string;
+  location1: string | null;
+  location2: string | null;
+  location3: string | null;
+  subscritionStartDate: string;
+  subscritionEndDate: string | null;
+  enabled: boolean;
+  username: string;
+  authorities: Authority[];
+  accountNonExpired: boolean;
+  accountNonLocked: boolean;
+  credentialsNonExpired: boolean;
+};
+
+type AuthContextType = {
+  user: UserDetails;
   isUserReady: boolean;
   refetchUser: Dispatch<SetStateAction<boolean>>;
 };
@@ -107,7 +109,7 @@ export const AuthProvider = ({
   }, [data]);
 
   if (isLoading) {
-    return null
+    return null;
   }
 
   // Check if the user has the required roles

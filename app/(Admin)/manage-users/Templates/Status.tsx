@@ -7,7 +7,7 @@ export const StatusTemplate = ({
   onClick,
 }: {
   status: `${USER_STATUS}`;
-  onClick: () => void;
+  onClick?: () => void;
 }) => {
   status = status ?? USER_STATUS.N;
 

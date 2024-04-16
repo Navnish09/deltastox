@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import {
   Popover,
   PopoverContent,
@@ -13,6 +13,9 @@ import { USER_ROLES } from "@/app/_globals/constant";
 import { UserRow } from "../Users";
 import { UserSubscription } from "../Actions/Subscription";
 import { MapToAdmin } from "../Actions/MapToAdmin";
+import { Contact, LockKeyhole, UserRoundCog } from "lucide-react";
+import { ChangePassword } from "../Actions/ChangePassword";
+import { cn } from "@/lib/utils";
 
 export type ModalActions = {
   toggleModal: Dispatch<SetStateAction<boolean>>;
@@ -24,19 +27,40 @@ export type ActionProps = {
   modalActions: ModalActions;
 };
 
-const ActionHandler = ({ actions, onSelect }: any) => {
+export type Action = {
+  label: string;
+  Icon?: ReactNode;
+  disable?: boolean;
+  component: ReactNode;
+};
+
+const ActionHandler = ({
+  actions,
+  onSelect,
+}: {
+  actions: Action[];
+  onSelect: (action: Action) => void;
+}) => {
   return (
     <>
       <div className="flex flex-col gap-2 text-sm">
         {actions.map((action: any, index: number) => (
           <div
             key={index}
-            className="hover:bg-secondary/50 rounded-sm p-2 px-3"
+            className={cn(
+              "hover:bg-secondary/50 rounded-sm p-2 px-2 cursor-pointer border-b last:border-b-0",
+              {
+                "text-muted-foreground cursor-not-allowed": action.disable,
+              }
+            )}
             onClick={() => {
-              onSelect(action);
+              !action.disable && onSelect(action);
             }}
           >
-            {action.label}
+            <div className="flex items-center gap-3">
+              {action.Icon ? action.Icon : null}
+              {action.label}
+            </div>
           </div>
         ))}
       </div>
@@ -66,9 +90,10 @@ export const UserActions = ({
     refresh();
   };
 
-  const actions = [
+  const actions: Action[] = [
     {
       label: "Subscription",
+      Icon: <Contact height={20} width={20} />,
       component: (
         <UserSubscription
           row={row}
@@ -77,20 +102,29 @@ export const UserActions = ({
         />
       ),
     },
-    ...(!isUserAdmin
-      ? [
-          {
-            label: "Map to Admin",
-            component: (
-              <MapToAdmin
-                row={row}
-                onComplete={onComplete}
-                modalActions={modalActions}
-              />
-            ),
-          },
-        ]
-      : []),
+    {
+      label: "Map to Admin",
+      Icon: <UserRoundCog height={20} width={20} />,
+      disable: isUserAdmin,
+      component: (
+        <MapToAdmin
+          row={row}
+          onComplete={onComplete}
+          modalActions={modalActions}
+        />
+      ),
+    },
+    {
+      label: "Change Password",
+      Icon: <LockKeyhole height={20} width={20} />,
+      component: (
+        <ChangePassword
+          row={row}
+          onComplete={onComplete}
+          modalActions={modalActions}
+        />
+      ),
+    },
   ];
 
   return (
@@ -122,7 +156,7 @@ export const UserActions = ({
           <div className="flex flex-col gap-2 text-sm">
             <ActionHandler
               actions={actions}
-              onSelect={(action: (typeof actions)[0]) => {
+              onSelect={(action) => {
                 setOpen(false);
 
                 if (action.component) {

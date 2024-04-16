@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 import { Divider } from "@components/Divider";
 
-import { Google, Show } from "@icons";
+import { Show } from "@icons";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
