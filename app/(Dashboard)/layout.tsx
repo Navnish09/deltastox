@@ -40,7 +40,6 @@ export default function RootLayout({
           </div>
         </NavigationProvider>
       </AuthProvider>
-      <Toaster />
     </>
   );
 }

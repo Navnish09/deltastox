@@ -140,7 +140,10 @@ const ProfileContent = ({ data }: { data: z.infer<typeof ProfileSchema> }) => {
     <div className="flex flex-col gap-10">
       <div className="flex gap-4 items-center">
         <Avatar className="h-14 w-14">
-          <AvatarImage src={user?.profilePic} color="#FFBC99" />
+          <AvatarImage
+            src={`data:image/png;base64,${user?.profilePic}`}
+            color="#FFBC99"
+          />
           <AvatarFallback>
             {user?.name
               ?.split(" ")

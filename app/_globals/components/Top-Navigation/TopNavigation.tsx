@@ -80,7 +80,10 @@ export const TopNavigation = ({ navigationData, isAdminPage }: Props) => {
                 {!isUserReady && (
                   <>
                     <Avatar>
-                      <AvatarImage src={user?.profilePic} color="#FFBC99" />
+                      <AvatarImage
+                        src={`data:image/png;base64,${user?.profilePic}`}
+                        color="#FFBC99"
+                      />
                       <AvatarFallback>
                         {user?.name
                           ?.split(" ")

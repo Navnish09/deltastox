@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const ADMIN_LIST = ["/admin", "/manage-users"];
 
-const AUTH_WHITE_LIST = ["/login", "/signup", ...ADMIN_LIST];
+const AUTH_WHITE_LIST = ["/login", "/signup", "/forgot-password", ...ADMIN_LIST];
 
 export default function (req: NextRequest) {
   const token = req.cookies.get("token");

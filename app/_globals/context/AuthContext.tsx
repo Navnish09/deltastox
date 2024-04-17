@@ -35,7 +35,6 @@ export type UserDetails = {
   mobile: string | null;
   status: `${USER_STATUS}`;
   roles: Role[];
-
   doj: string;
   profilePic?: string;
   location1: string | null;
@@ -93,18 +92,50 @@ export const AuthProvider = ({
     returnData: (data) => data.data,
   });
 
+  const logoutUserWithMessage = async ({
+    title,
+    description,
+  }: {
+    title: string;
+    description?: string;
+  }) => {
+    toast({
+      title,
+      description: description || "Please contact the support team",
+      variant: "destructive",
+    });
+
+    logout().finally(() => {
+      removeToken();
+      router.replace("/login");
+    });
+  };
+
   useLayoutEffect(() => {
     if (data?.status === "N") {
-      toast({
+      logoutUserWithMessage({
         title: "Account is disabled",
-        description: "Please contact the support team",
-        variant: "destructive",
       });
+    }
 
-      logout().finally(() => {
-        removeToken();
-        router.replace("/login");
+    // logout if user's subscription is expired
+    if (!data?.subscritionEndDate) {
+      logoutUserWithMessage({
+        title: "Subscription expired",
+        description: "Please contact our team to renew the subscription",
       });
+    }
+
+    if (data?.subscritionEndDate) {
+      const subscriptionEndDate = new Date(data.subscritionEndDate);
+      const currentDate = new Date();
+
+      if (subscriptionEndDate < currentDate) {
+        logoutUserWithMessage({
+          title: "Subscription expired",
+          description: "Please contact our team to renew the subscription",
+        });
+      }
     }
   }, [data]);
 

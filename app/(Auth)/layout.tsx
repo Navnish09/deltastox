@@ -15,10 +15,5 @@ export default function AuthLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className={`auth-screen-bg h-full w-full`}>
-      {children}
-      <Toaster />
-    </div>
-  );
+  return <div className={`auth-screen-bg h-full w-full`}>{children}</div>;
 }

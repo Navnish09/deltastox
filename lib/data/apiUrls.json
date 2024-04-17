@@ -10,6 +10,7 @@
   "auth": {
     "login": "/deltastox/auth/login",
     "logout": "/deltastox/auth/logout",
+    "forgotPassword": "/deltastox/auth/forgotPassword",
     "createUser": "/deltastox/auth/create-user",
     "getUserDetails": "/deltastox/auth/getUserDetails",
     "updatePasswordAndMobile": "/deltastox/auth/updateMobileAndPassword",

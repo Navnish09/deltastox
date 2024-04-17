@@ -49,7 +49,7 @@ export const DataCard = <TData, TValue>({
 
       <Card className="relative z-10" gradient="primary">
         <CardHeader>
-          <div className="w-4/12">
+          <div className="w-full md:w-4/12">
             <Input
               value={searchValue}
               onChange={(e) => setSeachValue(e.target.value)}

@@ -26,6 +26,11 @@ export const signUp = (data: {
   password: string;
 }) => apiService.post(auth.createUser, data);
 
+export const forgotPassword = (params: { email: string }) =>
+  apiService.post(auth.forgotPassword, undefined, {
+    params,
+  });
+
 export const getUserDetails = () => apiService.get(auth.getUserDetails);
 
 export const getUsers = () => apiService.get(home.getUsers);
