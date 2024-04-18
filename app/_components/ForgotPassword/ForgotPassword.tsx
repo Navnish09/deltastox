@@ -29,12 +29,15 @@ const ForgotPasswordSchema = z.object({
 type Props = {};
 
 export const ForgotPassword = ({}: Props) => {
+  let savedEmail =
+    typeof window !== "undefined" ? localStorage.getItem(REMEMBER_ME_KEY) : "";
+
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof ForgotPasswordSchema>>({
     resolver: zodResolver(ForgotPasswordSchema),
     defaultValues: {
-      email: localStorage.getItem(REMEMBER_ME_KEY) || "",
+      email: savedEmail || "",
     },
     mode: "onChange",
     reValidateMode: "onChange",
